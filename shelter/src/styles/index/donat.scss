@@ -1,0 +1,65 @@
+.donat {
+  padding: 81px 0 101px;
+
+  background-color: $color-light-m;
+}
+
+.donat__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donat__img {
+  max-width: 505px;
+  max-height: 261px;
+}
+
+.donat__info {
+  padding-left: 30px;
+}
+
+.donat__title {
+  @include section-title(300px);
+
+  margin-bottom: 20px;
+}
+
+.donat__bank {
+  font-size: 1.5rem;
+
+  margin-bottom: 20px;
+
+  color: $color-dark-l;
+}
+
+.donat__link {
+  font-size: 2rem;
+
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+  padding: 10px 15px;
+
+  border-radius: 9px;
+}
+
+.donat__icon {
+  width: 30px;
+  height: 23px;
+  margin-right: 15px;
+}
+
+.donat__txt {
+  font-family: $font-secondary;
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.5;
+
+  max-width: 380px;
+
+  color: $color-dark-m;
+}

@@ -1,0 +1,19 @@
+mixin link(href, name)
+  a(href=href class="link-btn")&attributes(attributes)= name
+      if block
+          block
+
+mixin icon(icon, name)
+  svg(class= icon): use(xlink:href="img/sprite.svg#" + name)
+
+mixin slider-item(src, name)
+  .slider__item
+    img.slider__img(src= src, alt="homeless animal")
+    p.slider__name= name
+    +link("#", "Learn more")(class="slider__link")
+
+mixin help-item(icon, name)
+  .help__item
+    +icon("help__icon", icon)
+    p.help__txt= name
+

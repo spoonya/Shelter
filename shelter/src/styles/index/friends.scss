@@ -1,0 +1,24 @@
+.friends {
+  padding: 80px 0 100px;
+
+  background-color: $color-light-m;
+}
+
+.friends__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.friends__title {
+  @include section-title(400px);
+
+  margin: 0 auto;
+  margin-bottom: 60px;
+
+  text-align: center;
+}
+
+.friends__link {
+  margin-top: 60px;
+}

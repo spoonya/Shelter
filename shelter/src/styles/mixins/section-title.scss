@@ -1,0 +1,11 @@
+@mixin section-title($width) {
+  font-size: 3.5rem;
+  line-height: 1.3;
+
+  width: 100%;
+  max-width: $width;
+
+  letter-spacing: .06em;
+
+  color: $color-dark-l;
+}

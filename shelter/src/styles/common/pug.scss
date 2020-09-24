@@ -1,0 +1,19 @@
+.link-btn {
+  font-size: 1.7rem;
+
+  align-self: center;
+
+  padding: 15px 45px;
+
+  transition: .1s linear;
+
+  color: $color-dark-3xl;
+  border: 2px solid $color-primary;
+  border-radius: 100px;
+  background-color: $color-primary;
+
+  &:hover {
+    border-color: $color-primary-light;
+    background-color: $color-primary-light;
+  }
+}
