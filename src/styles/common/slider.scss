@@ -45,6 +45,8 @@
 
   margin-bottom: 30px;
 
+  letter-spacing: .06em;
+
   color: $color-dark-xl;
 }
 
@@ -81,6 +83,13 @@
     background-color: $color-primary-light;
   }
 
+  &:active {
+    width: 45px;
+    height: 45px;
+
+    // box-shadow: 0 0 10px -5px;
+  }
+
   &--next {
     right: 0;
   }
@@ -101,6 +110,13 @@
     &:hover {
       border-color: $color-light-l;
       background: none;
+    }
+
+    &:active {
+      width: 52px;
+      height: 52px;
+
+      // box-shadow: 0 0 10px -5px;
     }
   }
 }

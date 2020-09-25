@@ -1,5 +1,5 @@
 .help {
-  padding: 80px 0 45px;
+  padding: 80px 0 41px;
 
   background-color: $color-light-xl;
 }
@@ -34,6 +34,8 @@
 
 .help__txt {
   font-size: 2rem;
+
+  letter-spacing: .06em;
 
   color: $color-dark-l;
 }

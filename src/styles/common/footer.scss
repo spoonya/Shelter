@@ -8,25 +8,23 @@
 .footer__info {
   font-style: normal;
 
-  display: flex;
-  align-items: flex-start;
+  display: grid;
 
-  padding: 61px 0 60px;
+  padding: 60px 0 59px;
+
+  grid-template-columns: 438px 295px;
 }
 
 .footer__col {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  display: grid;
 
-  width: 25%;
-  margin-right: 160px;
+  justify-items: baseline;
 }
 
 .footer__title {
   @include section-title(290px);
 
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 
   color: $color-light-xl;
 }
@@ -39,19 +37,25 @@
   align-items: center;
   flex-direction: row-reverse;
 
+  transition: .1s linear;
   letter-spacing: .06em;
 
   color: $color-primary;
 
   &:not(:last-child) {
-    margin-bottom: 44px;
+    margin-bottom: 32px;
   }
 }
 
 .footer__icon {
-  width: 40px;
+  width: 42px;
   height: 32px;
   margin-right: 20px;
+
+  &--sm {
+    width: 22px;
+    height: 32px;
+  }
 }
 
 .footer__img {
