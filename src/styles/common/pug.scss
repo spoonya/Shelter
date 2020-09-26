@@ -3,13 +3,14 @@
 
   align-self: center;
 
-  padding: 15px 45px;
+  padding: .88em 2.647em;
 
   transition: .1s linear;
+  text-align: center;
   letter-spacing: .06em;
 
   color: $color-dark-3xl;
-  border: 2px solid $color-primary;
+  border: .2rem solid $color-primary;
   border-radius: 100px;
   background-color: $color-primary;
 

@@ -1,7 +1,9 @@
 .slider {
   position: relative;
 
-  overflow: hidden;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
 .slider__track {
@@ -10,7 +12,7 @@
   justify-content: space-between;
 
   width: 100%;
-  max-width: 990px;
+  max-width: 99rem;
   margin: 0 auto;
 
   transition: .2s linear;
@@ -20,7 +22,7 @@
   overflow: hidden;
 
   width: 100%;
-  max-width: 990px;
+  max-width: 99rem;
   margin: 0 auto;
 }
 
@@ -30,8 +32,8 @@
   flex: 0 0 27.3%;
   flex-direction: column;
 
-  margin-right: 90px;
-  padding: 30px 35px;
+  margin-right: 9rem;
+  padding: 3rem 3.5rem;
 
   cursor: pointer;
   transition: .2s ease-in-out;
@@ -42,16 +44,16 @@
 
   &:hover {
     background-color: $color-light-xl;
-    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, .04);
+    box-shadow: 0 .2rem 3.5rem 1.4rem rgba(13, 13, 13, .04);
   }
 }
 
 .slider__img {
-  min-width: 200px;
-  max-width: 200px;
-  min-height: 240px;
-  max-height: 240px;
-  margin-bottom: 30px;
+  min-width: 20rem;
+  max-width: 20rem;
+  min-height: 24rem;
+  max-height: 24rem;
+  margin-bottom: 3rem;
 
   object-fit: cover;
 }
@@ -59,7 +61,7 @@
 .slider__name {
   font-size: 2rem;
 
-  margin-bottom: 30px;
+  margin-bottom: 3rem;
 
   letter-spacing: .06em;
 
@@ -71,8 +73,8 @@
 }
 
 .slider__icon {
-  width: 14px;
-  height: 6px;
+  width: 1.4rem;
+  height: .6rem;
 
   fill: $color-dark-3xl;
 }
@@ -85,13 +87,13 @@
   align-items: center;
   justify-content: center;
 
-  width: 52px;
-  height: 52px;
+  width: 5.2rem;
+  height: 5.2rem;
 
   transition: .1s linear;
   transform: translateY(-50%);
 
-  border: 2px solid $color-primary;
+  border: .2rem solid $color-primary;
   border-radius: 100px;
 
   &:hover {
@@ -100,10 +102,8 @@
   }
 
   &:active {
-    width: 45px;
-    height: 45px;
-
-    // box-shadow: 0 0 10px -5px;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 
   &--next {
@@ -129,10 +129,8 @@
     }
 
     &:active {
-      width: 52px;
-      height: 52px;
-
-      // box-shadow: 0 0 10px -5px;
+      width: 5.2rem;
+      height: 5.2rem;
     }
   }
 }

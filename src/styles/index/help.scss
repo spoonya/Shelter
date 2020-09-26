@@ -1,14 +1,14 @@
 .help {
-  padding: 80px 0 41px;
+  padding: 8rem 0 4rem;
 
   background-color: $color-light-xl;
 }
 
 .help__title {
-  @include section-title(310px);
+  @include section-title(31rem);
 
   margin: 0 auto;
-  margin-bottom: 60px;
+  margin-bottom: 1.714em;
 
   text-align: center;
 }
@@ -21,15 +21,15 @@
 
 .help__item {
   width: 20%;
-  margin-bottom: 55px;
+  margin-bottom: 5.5rem;
 
   text-align: center;
 }
 
 .help__icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 30px;
+  width: 6rem;
+  height: 6rem;
+  margin-bottom: 3rem;
 }
 
 .help__txt {

@@ -6,18 +6,21 @@
 }
 
 .intro__info {
+  position: relative;
+  z-index: 1;
+
   width: 100%;
-  max-width: 460px;
-  padding: 343px 0 243px;
+  max-width: 46rem;
+  padding: 34.3rem 0 24.2rem;
 }
 
 .intro__title {
-  @include section-title(310px);
+  @include section-title(31rem);
 
   font-size: 4.4rem;
 
   width: 100%;
-  margin-bottom: 42px;
+  margin-bottom: .955em;
 
   letter-spacing: 0;
 
@@ -28,7 +31,7 @@
   font-size: 1.5rem;
   line-height: 1.6;
 
-  margin-bottom: 41px;
+  margin-bottom: 2.733em;
 
   color: $color-light-l;
 }
@@ -38,6 +41,6 @@
   right: 0;
   bottom: 0;
 
-  max-width: 698px;
-  max-height: 728px;
+  max-width: 69.8rem;
+  max-height: 72.8rem;
 }
