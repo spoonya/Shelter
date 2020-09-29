@@ -11,7 +11,7 @@
 
   width: 100%;
   max-width: 46rem;
-  padding: 34.3rem 0 24.2rem;
+  padding: 34.3rem 0 24.4rem;
 }
 
 .intro__title {
@@ -28,6 +28,7 @@
 }
 
 .intro__txt {
+  font-family: $font-secondary;
   font-size: 1.5rem;
   line-height: 1.6;
 
@@ -43,4 +44,6 @@
 
   max-width: 69.8rem;
   max-height: 72.8rem;
+
+  object-fit: contain;
 }

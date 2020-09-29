@@ -1,5 +1,5 @@
 .donat {
-  padding: 8rem 0 9.8rem;
+  padding: 8rem 0 10.3rem;
 
   background-color: $color-light-m;
 }
@@ -13,6 +13,8 @@
 .donat__img {
   max-width: 50.5rem;
   max-height: 26.1rem;
+
+  object-fit: contain;
 }
 
 .donat__info {
@@ -44,7 +46,7 @@
   justify-content: space-between;
 
   margin-bottom: 1em;
-  padding: .5em .75em;
+  padding: .425em .64em;
 
   border-radius: 9px;
 }

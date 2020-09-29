@@ -1,54 +1,58 @@
 extends common/layout
 
+block title
+  title Shelter
+
 block content
   main
-    section.intro(style="background: url(img/intro/noise.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;")
-      .container
-        .intro__inner
-          .intro__info
-            h2.intro__title Not only people need a house
-            p.intro__txt We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!
-            +link("#", "Make a friend")
-          img.intro__img(src="img/intro/bobik.png", alt="dog")
+    article
+      section.intro(style="background: url(assets/img/intro/noise.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;")
+        .container
+          .intro__inner
+            .intro__info
+              h2.intro__title Not only people need a house
+              p.intro__txt We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!
+              +link("#", "Make a friend")
+            img.intro__img(src="assets/img/intro/bobik.png", alt="dog")
 
-    section.about
-      .container
-        .about__inner
-          img.about__img(src="img/about/a-1.png", alt="cat&dog")
-          .about__info
-            h2.about__title About the shelter “Cozy House”
-            .about__txt
-              p Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.
-              p We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.
+      section.about
+        .container
+          .about__inner
+            img.about__img(src="assets/img/about/a-1.png", alt="cat&dog")
+            .about__info
+              h2.about__title About the shelter “Cozy House”
+              .about__txt
+                p Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.
+                p We feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.
 
-    section.friends
-      .container
-        .friends__inner
-          h2.friends__title Our friends who <br> are looking for a house
-          include includes/slider
-          +link("#", "Get to know the rest")(class="friends__link")
+      section.friends
+        .container
+          .friends__inner
+            h2.friends__title Our friends who <br> are looking for a house
+            include includes/slider
+            +link("pets.html", "Get to know the rest")(class="friends__link")
 
-    section.help
-      .container
-        h2.help__title How you can help our shelter
-        .help__inner
-          +help-item("h-1", "Pet food")
-          +help-item("h-2", "Transportation")
-          +help-item("h-3", "Toys")
-          +help-item("h-4", "Bowls and cups")
-          +help-item("h-5", "Shampoos")
-          +help-item("h-6", "Vitamins")
-          +help-item("h-7", "Medicines")
-          +help-item("h-8", "Collars / leashes")
-          +help-item("h-9", "Sleeping areas")
+      section.help
+        .container
+          h2.help__title How you can help our shelter
+          .help__inner
+            +help-item("h-1", "Pet food")
+            +help-item("h-2", "Transportation")
+            +help-item("h-3", "Toys")
+            +help-item("h-4", "Bowls and cups")
+            +help-item("h-5", "Shampoos")
+            +help-item("h-6", "Vitamins")
+            +help-item("h-7", "Medicines")
+            +help-item("h-8", "Collars / leashes")
+            +help-item("h-9", "Sleeping areas")
 
-    section.donat
-      .container
-        .donat__inner
-          img.donat__img(src="img/donat/d-1.png", alt="dog")
-          .donat__info
-            h2.donat__title You can also make a donation
-            p.donat__bank Name of the bank / Type of bank account
-            +link("#", "8380 2880 8028 8791 7435")(class="donat__link")
-              +icon("donat__icon", "card")
-            p.donat__txt Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      section.donat
+        .container
+          .donat__inner
+            img.donat__img(src="assets/img/donat/d-1.png", alt="dog")
+            .donat__info
+              h2.donat__title You can also make a donation
+              p.donat__bank Name of the bank / Type of bank account
+              +link("#", "8380 2880 8028 8791 7435")(class="donat__link")
+                +icon("donat__icon", "card")
+              p.donat__txt Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.

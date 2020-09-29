@@ -8,7 +8,7 @@
 
 .slider__track {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
 
   width: 100%;
@@ -27,49 +27,31 @@
 }
 
 .slider__item {
-  display: flex;
-  align-items: center;
-  flex: 0 0 27.3%;
-  flex-direction: column;
+  @include pet-item;
+
+  flex: 0 1 27.3%;
 
   margin-right: 9rem;
-  padding: 3rem 3.5rem;
+}
 
-  cursor: pointer;
-  transition: .2s ease-in-out;
-
-  border-radius: 9px;
-  background-color: $color-light-s;
-
-
-  &:hover {
-    background-color: $color-light-xl;
-    box-shadow: 0 .2rem 3.5rem 1.4rem rgba(13, 13, 13, .04);
-  }
+.slider__img-wrp {
+  @include img-wrapper;
 }
 
 .slider__img {
-  min-width: 20rem;
-  max-width: 20rem;
-  min-height: 24rem;
-  max-height: 24rem;
-  margin-bottom: 3rem;
+  @include pet-img;
+}
 
-  object-fit: cover;
+.slider__content {
+  padding: 0 0 3rem;
 }
 
 .slider__name {
-  font-size: 2rem;
-
-  margin-bottom: 3rem;
-
-  letter-spacing: .06em;
-
-  color: $color-dark-xl;
+  @include pet-name;
 }
 
 .slider__link {
-  background-color: none;
+  @include pet-link;
 }
 
 .slider__icon {

@@ -73,16 +73,24 @@ button {
 }
 
 html {
-  font-size: 10px;
+  font-size: 62.5%;
 
   scroll-behavior: smooth;
 }
 
 body {
   font-family: $font-primary;
-  font-size: 1.6rem;
+  font-size: 1.6em;
 
   margin: 0;
+}
+
+.page {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+
+  min-height: 100vh;
 }
 
 .container {

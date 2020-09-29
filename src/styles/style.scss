@@ -1,17 +1,22 @@
+@import 'utils/fonts';
 @import 'utils/vars';
 
 @import 'common/global';
-@import 'common/header';
-@import 'common/pug';
-@import 'common/slider';
 
 @import 'mixins/media';
 @import 'mixins/section-title';
+@import 'mixins/pet-item';
+
+@import 'common/header';
+@import 'common/pug';
+@import 'common/slider';
 
 @import 'index/intro';
 @import 'index/about';
 @import 'index/friends';
 @import 'index/help';
 @import 'index/donat';
+
+@import 'pets/pets';
 
 @import 'common/footer';

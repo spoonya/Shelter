@@ -3,16 +3,18 @@ html(lang="en")
   block head
     head
       meta(charset="utf-8")
-      title Shelter
+      block title
+        title Shelter
       meta(content="width=device-width, initial-scale=1" name="viewport")
       meta(content="ie=edge" http-equiv="x-ua-compatible")
-      link(rel="stylesheet" href="css/style.min.css")
+      link(rel="stylesheet" href="style.min.css")
   body
     include ../includes/mixins
-    block header
-      include header
-    block content
-    block footer
-      include footer
-    block scripts
-      script(src='js/main.min.js')
+    .page
+      block header
+        include header
+      block content
+      block footer
+        include footer
+      block scripts
+        script(src='js/main.min.js' defer)

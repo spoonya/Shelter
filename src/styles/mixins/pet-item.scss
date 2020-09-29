@@ -1,0 +1,57 @@
+@mixin pet-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  transition: .2s ease-in-out;
+
+  border-radius: 9px;
+  background-color: $color-light-s;
+
+  &:hover {
+    background-color: $color-light-xl;
+    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, .04);
+  }
+}
+
+@mixin img-wrapper {
+  overflow: hidden;
+
+  width: 100%;
+
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+
+@mixin pet-img {
+  min-width: 27rem;
+  max-width: 27rem;
+  min-height: 27rem;
+  max-height: 27rem;
+  margin-bottom: 3rem;
+
+  object-fit: contain;
+}
+
+@mixin pet-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 0 1.5rem 3rem;
+}
+
+@mixin pet-name {
+  font-size: 2rem;
+
+  margin-bottom: 3rem;
+
+  text-align: center;
+  letter-spacing: .06em;
+
+  color: $color-dark-xl;
+}
+
+@mixin pet-link {
+  background-color: none;
+}

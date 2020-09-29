@@ -19,6 +19,8 @@
 .about__img {
   max-width: 30rem;
   max-height: 40.8rem;
+
+  object-fit: contain;
 }
 
 .about__title {

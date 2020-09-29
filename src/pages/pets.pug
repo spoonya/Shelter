@@ -1,0 +1,28 @@
+extends common/layout
+
+block title
+  title Shelter - Our pets
+
+block content
+  main
+    article.pets
+      .container
+        .pets__inner
+          h2.pets__title Our friends who <br> are looking for a house
+          .pets__wrapper
+            +pet-item("assets/img/friends/pet-1.png", "Katrine", "pets")
+            +pet-item("assets/img/friends/pet-2.png", "Jennifer", "pets")
+            +pet-item("assets/img/friends/pet-3.png", "Woody", "pets")
+            +pet-item("assets/img/friends/pet-4.png", "Sophia", "pets")
+            +pet-item("assets/img/friends/pet-5.png", "Timmy", "pets")
+            +pet-item("assets/img/friends/pet-6.png", "Charly", "pets")
+            +pet-item("assets/img/friends/pet-7.png", "Scarlett", "pets")
+            +pet-item("assets/img/friends/pet-8.png", "Freddy", "pets")
+          .pets__pag
+            +link("#", "1")(class="pets__pag-link")
+            span.pets__pag-sep
+            +link("#", "4")(class="pets__pag-link")
+            +link("#", "5")(class="pets__pag-link pets__pag-link--active")
+            +link("#", "6")(class="pets__pag-link")
+            span.pets__pag-sep
+            +link("#", "10")(class="pets__pag-link")

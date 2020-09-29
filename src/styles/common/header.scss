@@ -5,14 +5,31 @@
   left: 0;
 
   width: 100%;
+  padding-top: 6rem;
+}
+
+.header--dark {
+  .header__title {
+    color: $color-dark-l;
+  }
+
+  .header__subtitle {
+    color: $color-dark-3xl;
+  }
+
+  .header__menu-link {
+    color: $color-dark-l;
+
+    &:hover {
+      color: $color-dark-3xl;
+    }
+  }
 }
 
 .header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding-top: 6rem;
 }
 
 .header__title {
@@ -28,6 +45,8 @@
 .header__subtitle {
   font-family: $font-secondary;
   font-size: 1.3rem;
+
+  padding-left: .4rem;
 
   letter-spacing: .1em;
 

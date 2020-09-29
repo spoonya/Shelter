@@ -1,3 +1,7 @@
+.footer {
+  margin-top: auto;
+}
+
 .footer__inner {
   position: relative;
 
@@ -10,7 +14,7 @@
 
   display: grid;
 
-  padding: 6rem 0 5.9rem;
+  padding: 6rem 0 5.5rem;
 
   grid-template-columns: 43.8rem 29.5rem;
 }
@@ -45,12 +49,20 @@
   &:not(:last-child) {
     margin-bottom: 1.6em;
   }
+
+  &:hover {
+    .footer__icon {
+      transform: translateY(-5px);
+    }
+  }
 }
 
 .footer__icon {
   width: 4.2rem;
   height: 3.2rem;
   margin-right: 1em;
+
+  transition: transform .2s linear;
 
   &--sm {
     width: 2.2rem;
@@ -65,4 +77,6 @@
 
   max-width: 30rem;
   max-height: 31.5rem;
+
+  object-fit: contain;
 }

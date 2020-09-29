@@ -4,13 +4,15 @@ mixin link(href, name)
           block
 
 mixin icon(icon, name)
-  svg(class= icon): use(xlink:href="img/sprite.svg#" + name)
+  svg(class= icon): use(xlink:href="assets/img/sprite.svg#" + name)
 
-mixin slider-item(src, name)
-  .slider__item
-    img.slider__img(src= src, alt="homeless animal")
-    p.slider__name= name
-    +link("#", "Learn more")(class="slider__link")
+mixin pet-item(src, name, className)
+  div(class= `${className}__item`)
+    div(class= `${className}__img-wrp`)
+      img(class= `${className}__img` src= src, alt="homeless animal")
+    div(class= `${className}__content`)
+      p(class= `${className}__name`)= name
+      +link("#", "Learn more")(class=`${className}__link`)
 
 mixin help-item(icon, name)
   .help__item
