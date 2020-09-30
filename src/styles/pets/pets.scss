@@ -33,7 +33,7 @@
 .pets__item {
   @include pet-item;
 
-  margin: 0 0 4rem;
+  margin: 0 1rem 4rem;
 
   &:hover {
     transform: translateY(-5px);

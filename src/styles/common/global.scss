@@ -87,7 +87,6 @@ body {
 
 .page {
   display: flex;
-  overflow: hidden;
   flex-direction: column;
 
   min-height: 100vh;
@@ -95,7 +94,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1230px;
+  max-width: 123rem;
   margin: 0 auto;
   padding: 0 15px;
 }
