@@ -19,10 +19,8 @@ block content
             +pet-item("assets/img/friends/pet-7.png", "Scarlett", "pets")
             +pet-item("assets/img/friends/pet-8.png", "Freddy", "pets")
           .pets__pag
-            +link("#", "1")(class="pets__pag-link")
-            span.pets__pag-sep
-            +link("#", "4")(class="pets__pag-link")
-            +link("#", "5")(class="pets__pag-link pets__pag-link--active")
-            +link("#", "6")(class="pets__pag-link")
-            span.pets__pag-sep
-            +link("#", "10")(class="pets__pag-link")
+            +link("#", "")(class="pets__pag-link pets__pag-link--inactive"): +icon("pets__pag-icon pets__pag-icon--double pets__pag-icon--revert", "arrow-double")
+            +link("#", "")(class="pets__pag-link pets__pag-link--inactive"): +icon("pets__pag-icon pets__pag-icon--revert", "arrow")
+            +link("#", "1")(class="pets__pag-link pets__pag-link--active")
+            +link("#", "")(class="pets__pag-link"): +icon("pets__pag-icon", "arrow")
+            +link("#", "")(class="pets__pag-link"): +icon("pets__pag-icon pets__pag-icon--double", "arrow-double")

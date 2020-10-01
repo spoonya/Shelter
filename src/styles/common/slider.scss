@@ -96,22 +96,10 @@
   }
 
   &--inactive {
-    cursor: not-allowed;
-
-    border-color: $color-light-l;
+    @include disabled-btn;
 
     .slider__icon {
-      fill: $color-light-l;
-    }
-
-    &:hover {
-      border-color: $color-light-l;
-      background: none;
-    }
-
-    &:active {
-      width: 5.2rem;
-      height: 5.2rem;
+      @include disabled-icon;
     }
   }
 }

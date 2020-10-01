@@ -1,0 +1,18 @@
+@mixin disabled-btn {
+  cursor: not-allowed;
+
+  border-color: $color-light-l;
+
+  &:hover {
+    border-color: $color-light-l;
+    background: none;
+  }
+
+  &:active {
+    transform: unset;
+  }
+}
+
+@mixin disabled-icon {
+  fill: $color-light-l;
+}

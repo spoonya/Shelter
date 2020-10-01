@@ -9,6 +9,14 @@
 }
 
 .header--dark {
+  position: sticky;
+
+  margin-top: 2rem;
+  margin-bottom: 1.9rem;
+  padding: 1rem 0 1rem;
+
+  background-color: $color-light-xl;
+
   .header__title {
     color: $color-dark-l;
   }
@@ -21,6 +29,10 @@
     color: $color-dark-l;
 
     &:hover {
+      color: $color-dark-3xl;
+    }
+
+    &--active {
       color: $color-dark-3xl;
     }
   }
