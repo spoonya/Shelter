@@ -10,6 +10,16 @@
 }
 
 .footer__info {
+  @include media-laptop {
+    justify-content: center;
+
+    padding: 3rem 0 35.9rem;
+  }
+  @include media-tablet-pt {
+    grid-row-gap: 4rem;
+    grid-template-columns: 100%;
+  }
+
   font-style: normal;
 
   position: relative;
@@ -23,6 +33,10 @@
 }
 
 .footer__col {
+  @include media-tablet-pt {
+    justify-content: center;
+  }
+
   display: grid;
 
   justify-items: baseline;
@@ -30,6 +44,11 @@
 
 .footer__title {
   @include section-title(29rem);
+  @include media-tablet-pt {
+    font-size: 3.5rem;
+
+    text-align: center;
+  }
 
   margin-bottom: 3.1rem;
 
@@ -74,12 +93,22 @@
 }
 
 .footer__img {
+  @include media-laptop {
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+  @include media-tablet-pt {
+    max-width: 26rem;
+    max-height: 26.9rem;
+  }
+
   position: absolute;
   right: 0;
   bottom: 0;
 
   max-width: 30rem;
-  max-height: 31.5rem;
+  max-height: 31rem;
 
   object-fit: contain;
 }

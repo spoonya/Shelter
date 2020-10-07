@@ -1,16 +1,29 @@
 .donat {
+  @include media-tablet-pt {
+    padding: 4.2rem 0;
+  }
+
   padding: 8rem 0 10.2rem;
 
   background-color: $color-light-m;
 }
 
 .donat__inner {
+  @include media-laptop {
+    flex-direction: column-reverse;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .donat__img {
+  @include media-tablet-pt {
+    max-width: 26rem;
+    max-height: 13.52rem;
+  }
+
   max-width: 50.5rem;
   max-height: 26.1rem;
 
@@ -18,11 +31,26 @@
 }
 
 .donat__info {
+  @include media-laptop {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    margin-bottom: 6rem;
+    padding: 8rem 0 10.2rem;
+    padding: 0;
+
+    text-align: center;
+  }
+
   padding-left: 3rem;
 }
 
 .donat__title {
-  @include section-title(8.571em);
+  @include media-laptop {
+    text-align: center;
+  }
+  @include section-title(30rem);
 
   margin-bottom: .571em;
 }
@@ -38,6 +66,10 @@
 }
 
 .donat__link {
+  @include media-tablet-pt {
+    font-size: 1.5rem;
+  }
+
   font-size: 2rem;
 
   display: inline-flex;

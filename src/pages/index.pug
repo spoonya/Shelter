@@ -12,7 +12,7 @@ block content
             .intro__info
               h2.intro__title Not only people need a house
               p.intro__txt We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!
-              +link("#", "Make a friend")
+              +link("#", "Make a friend")(class="intro__link")
             img.intro__img(src="assets/img/intro/bobik.png", alt="dog")
 
       section.about
@@ -29,7 +29,15 @@ block content
         .container
           .friends__inner
             h2.friends__title Our friends who <br> are looking for a house
-            include includes/slider
+            .slider
+              button.slider__btn.slider__btn--prev: +icon("slider__icon", "arrow-left")
+              .slider__wrapper
+                .slider__track
+                  +pet-item("assets/img/friends/pet-1.png", "Katrine", "slider")
+                  +pet-item("assets/img/friends/pet-2.png", "Jennifer", "slider")
+                  +pet-item("assets/img/friends/pet-3.png", "Woody", "slider")
+                  +pet-item("assets/img/friends/test.png", "Alexandr", "slider", "slider__img--transparent")
+              button.slider__btn.slider__btn--next: +icon("slider__icon", "arrow-right")
             +link("pets.html", "Get to know the rest")(class="friends__link")
 
       section.help

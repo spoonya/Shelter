@@ -1,4 +1,8 @@
 .header {
+  @include media-laptop {
+    padding-top: 3rem;
+  }
+
   position: absolute;
   z-index: 1000;
   top: 0;
@@ -36,6 +40,10 @@
       color: $color-dark-3xl;
     }
   }
+
+  .header__burger {
+    background-color: $color-dark-default;
+  }
 }
 
 .header__inner {
@@ -63,6 +71,12 @@
   letter-spacing: .1em;
 
   color: $color-light-xl;
+}
+
+.header__menu {
+  @include media-tablet-pt {
+    display: none;
+  }
 }
 
 .header__menu-list {
@@ -113,5 +127,52 @@
 
   &::after {
     opacity: 1;
+  }
+}
+
+.header__burger {
+  @include media-tablet-pt {
+    display: block;
+  }
+
+  position: relative;
+
+  display: none;
+
+  width: 3rem;
+  height: .2rem;
+
+  content: '';
+
+  background-color: $color-primary;
+
+  &::before {
+    position: absolute;
+    right: 0;
+    bottom: .8rem;
+
+    display: inline-block;
+
+    width: inherit;
+    height: inherit;
+
+    content: '';
+
+    background-color: inherit;
+  }
+
+  &::after {
+    position: absolute;
+    top: .8rem;
+    right: 0;
+
+    display: inline-block;
+
+    width: inherit;
+    height: inherit;
+
+    content: '';
+
+    background-color: inherit;
   }
 }

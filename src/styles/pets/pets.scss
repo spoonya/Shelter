@@ -1,4 +1,8 @@
 .pets {
+  @include media-tablet-pt {
+    padding: 4.2rem 0;
+  }
+
   padding: 8rem 0 10rem;
 
   background-color: $color-light-m;
@@ -20,6 +24,15 @@
 }
 
 .pets__wrapper {
+  @include media-laptop {
+    justify-content: center;
+
+    max-width: 92rem;
+  }
+  @include media-tablet-pt {
+    max-width: 60rem;
+  }
+
   display: flex;
   align-items: stretch;
   flex-wrap: wrap;
@@ -31,6 +44,18 @@
 
 .pets__item {
   @include pet-item;
+  @include media-laptop {
+    margin: 0 2rem 3rem;
+
+    &:nth-last-child(-n+2) {
+      display: none;
+    }
+  }
+  @include media-tablet-pt {
+    &:nth-last-child(-n+5) {
+      display: none;
+    }
+  }
 
   margin: 0 0 3rem;
 
@@ -51,6 +76,10 @@
   @include pet-img;
 
   transition: transform .2s ease-in-out;
+
+  &--transparent {
+    padding: 2rem;
+  }
 }
 
 .pets__content {
@@ -85,7 +114,7 @@
 
   max-width: 52px;
   max-height: 52px;
-  padding: 1.3em;
+  padding: 1.2em;
 
   border-radius: 100px;
   background-color: none;
@@ -125,45 +154,45 @@
   }
 }
 
-// .pets__pag-sep {
-//   position: relative;
+.pets__pag-sep {
+  position: relative;
 
-//   width: 5px;
-//   height: 5px;
-//   margin: 0 10px;
+  width: 5px;
+  height: 5px;
+  margin: 0 10px;
 
-//   border-radius: 100px;
-//   background-color: $color-primary;
+  border-radius: 100px;
+  background-color: $color-primary;
 
-//   &::before {
-//     position: absolute;
-//     top: 0;
-//     left: 10px;
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 10px;
 
-//     display: inline-block;
+    display: inline-block;
 
-//     width: inherit;
-//     height: inherit;
+    width: inherit;
+    height: inherit;
 
-//     content: '';
+    content: '';
 
-//     border-radius: 100px;
-//     background-color: inherit;
-//   }
+    border-radius: 100px;
+    background-color: inherit;
+  }
 
-//   &::after {
-//     position: absolute;
-//     top: 0;
-//     right: 10px;
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 10px;
 
-//     display: inline-block;
+    display: inline-block;
 
-//     width: inherit;
-//     height: inherit;
+    width: inherit;
+    height: inherit;
 
-//     content: '';
+    content: '';
 
-//     border-radius: 100px;
-//     background-color: inherit;
-//   }
-// }
+    border-radius: 100px;
+    background-color: inherit;
+  }
+}

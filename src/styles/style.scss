@@ -1,9 +1,10 @@
 @import 'utils/fonts';
 @import 'utils/vars';
 
+@import 'mixins/media';
+
 @import 'common/global';
 
-@import 'mixins/media';
 @import 'mixins/section-title';
 @import 'mixins/pet-item';
 @import 'mixins/disabled';

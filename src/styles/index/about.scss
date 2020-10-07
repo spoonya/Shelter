@@ -1,10 +1,20 @@
 .about {
+  @include media-tablet-pt {
+    padding: 4.2rem 0;
+  }
+
   padding: 8rem 0 10rem;
 
   background: $color-light-xl;
 }
 
 .about__inner {
+  @include media-laptop {
+    flex-direction: column-reverse;
+
+    padding: 0;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,10 +23,23 @@
 }
 
 .about__info {
+  @include media-laptop {
+    margin-bottom: 8rem;
+    padding-left: 0;
+  }
+  @include media-tablet-pt {
+    text-align: center;
+  }
+
   padding-left: 12rem;
 }
 
 .about__img {
+  @include media-tablet-pt {
+    max-width: 26rem;
+    max-height: 35.36rem;
+  }
+
   max-width: 30rem;
   max-height: 40.8rem;
 
@@ -24,12 +47,20 @@
 }
 
 .about__title {
+  @include media-tablet-pt {
+    margin: 0 auto 2.5rem;
+  }
   @include section-title(37rem);
 
-  margin-bottom: .714em;
+  width: 100%;
+  margin-bottom: 2.5rem;
 }
 
 .about__txt {
+  @include media-laptop {
+    max-width: 29.133em;
+  }
+
   font-family: $font-secondary;
   font-size: 1.5rem;
   line-height: 1.6;

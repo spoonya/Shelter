@@ -6,8 +6,24 @@
 }
 
 .intro__info {
+  @include media-laptop {
+    margin: 0 auto;
+    padding: 15rem 0 69.3rem;
+  }
+  @include media-tablet-pt {
+    display: flex;
+    align-items: center;
+
+    padding: 15rem 0 33.7rem;
+
+    text-align: center;
+  }
+
   position: relative;
   z-index: 1;
+
+  display: flex;
+  flex-direction: column;
 
   width: 100%;
   max-width: 46rem;
@@ -37,7 +53,24 @@
   color: $color-light-l;
 }
 
+.intro__link {
+  @include media-laptop {
+    align-self: center;
+  }
+
+  align-self: flex-start;
+}
+
 .intro__img {
+  @include media-laptop {
+    max-width: 56.9rem;
+    max-height: 59.3rem;
+  }
+  @include media-tablet-pt {
+    max-width: 26rem;
+    max-height: 27.177rem;
+  }
+
   position: absolute;
   right: 0;
   bottom: 0;

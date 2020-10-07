@@ -1,10 +1,17 @@
 .help {
+  @include media-tablet-pt {
+    padding: 4.2rem 0 1.2rem;
+  }
+
   padding: 8rem 0 4.9rem;
 
   background-color: $color-light-xl;
 }
 
 .help__title {
+  @include media-tablet-pt {
+    max-width: 23rem;
+  }
   @include section-title(31rem);
 
   margin: 0 auto;
@@ -14,12 +21,29 @@
 }
 
 .help__inner {
+  @include media-laptop {
+    justify-content: space-between;
+
+    width: 100%;
+    // max-width: 63rem;
+    margin: 0 auto;
+  }
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .help__item {
+  @include media-laptop {
+    width: 27%;
+    margin: 0 0rem 5rem 0rem;
+  }
+  @include media-tablet-pt {
+    width: 48%;
+    margin: 0 0rem 3rem 0rem;
+  }
+
   margin: 0 6rem 5rem 6rem;
 
   text-align: center;
@@ -32,6 +56,10 @@
 }
 
 .help__txt {
+  @include media-tablet-pt {
+    font-size: 1.5rem;
+  }
+
   font-size: 2rem;
 
   letter-spacing: .06em;
