@@ -33,12 +33,13 @@
 .donat__info {
   @include media-laptop {
     display: flex;
-    align-items: center;
     flex-direction: column;
 
     margin-bottom: 6rem;
-    padding: 8rem 0 10.2rem;
     padding: 0;
+  }
+  @include media-tablet-pt {
+    align-items: center;
 
     text-align: center;
   }
@@ -47,15 +48,16 @@
 }
 
 .donat__title {
-  @include media-laptop {
-    text-align: center;
-  }
   @include section-title(30rem);
 
   margin-bottom: .571em;
 }
 
 .donat__bank {
+  @include media-tablet-pt {
+    letter-spacing: 0;
+  }
+
   font-size: 1.5rem;
 
   margin-bottom: 1.333em;
@@ -68,12 +70,15 @@
 .donat__link {
   @include media-tablet-pt {
     font-size: 1.5rem;
+
+    align-self: center;
   }
 
   font-size: 2rem;
 
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
   flex-direction: row-reverse;
   justify-content: space-between;
 
@@ -90,6 +95,10 @@
 }
 
 .donat__txt {
+  @include media-tablet-pt {
+    text-align: justify;
+  }
+
   font-family: $font-secondary;
   font-size: 1.2rem;
   font-style: italic;

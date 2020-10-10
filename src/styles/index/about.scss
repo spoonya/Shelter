@@ -27,9 +27,6 @@
     margin-bottom: 8rem;
     padding-left: 0;
   }
-  @include media-tablet-pt {
-    text-align: center;
-  }
 
   padding-left: 12rem;
 }
@@ -48,7 +45,10 @@
 
 .about__title {
   @include media-tablet-pt {
+    max-width: 29rem;
     margin: 0 auto 2.5rem;
+
+    text-align: center;
   }
   @include section-title(37rem);
 
@@ -59,6 +59,9 @@
 .about__txt {
   @include media-laptop {
     max-width: 29.133em;
+  }
+  @include media-tablet-pt {
+    text-align: justify;
   }
 
   font-family: $font-secondary;

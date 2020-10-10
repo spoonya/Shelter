@@ -93,6 +93,14 @@ body {
 }
 
 .container {
+  // @include media-laptop {
+  //   max-width: 73.8rem;
+  // }
+  @include media-tablet-pt {
+    // max-width: 33rem;
+    padding: 0 1rem;
+  }
+
   width: 100%;
   max-width: 123rem;
   margin: 0 auto;
