@@ -13,9 +13,13 @@
   @include media-laptop {
     justify-content: center;
 
-    padding: 3rem 0 35.9rem;
+    padding: 3rem 0 37.4rem;
+
+    grid-template-columns: 32.8rem 35.5rem;
   }
   @include media-tablet-pt {
+    padding: 3rem 0 30.9rem;
+
     grid-row-gap: 4rem;
     grid-template-columns: 100%;
   }
@@ -27,12 +31,15 @@
 
   display: grid;
 
-  padding: 5.8rem 0 6.1rem;
+  padding: 5.8rem 0 5.7rem;
 
   grid-template-columns: 43.8rem 29.5rem;
 }
 
 .footer__col {
+  @include media-laptop {
+    justify-content: center;
+  }
   @include media-tablet-pt {
     justify-items: center;
   }
@@ -45,7 +52,8 @@
 .footer__title {
   @include section-title(29rem);
   @include media-tablet-pt {
-    // font-size: 3.5rem;
+    margin-bottom: 4rem;
+
     text-align: center;
   }
 
@@ -68,7 +76,13 @@
   color: $color-primary;
 
   &:not(:last-child) {
-    margin-bottom: 1.6em;
+    @include media-tablet-pt {
+      &:not(:last-child) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    margin-bottom: 1.8em;
   }
 
   &:hover {

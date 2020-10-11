@@ -1,6 +1,6 @@
 .about {
   @include media-tablet-pt {
-    padding: 4.2rem 0;
+    padding: 4.06rem 0;
   }
 
   padding: 8rem 0 10rem;
@@ -26,6 +26,9 @@
   @include media-laptop {
     margin-bottom: 8rem;
     padding-left: 0;
+  }
+  @include media-tablet-pt {
+    margin-bottom: 4.13rem;
   }
 
   padding-left: 12rem;
@@ -58,9 +61,12 @@
 
 .about__txt {
   @include media-laptop {
-    max-width: 29.133em;
+    max-width: 28.133em;
+    margin: 0 auto;
   }
   @include media-tablet-pt {
+    max-width: 17.875em;
+
     text-align: justify;
   }
 

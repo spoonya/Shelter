@@ -141,6 +141,7 @@
 
   width: 3rem;
   height: .2rem;
+  margin-right: 4.3rem;
 
   content: '';
 
@@ -149,7 +150,7 @@
   &::before {
     position: absolute;
     right: 0;
-    bottom: .8rem;
+    bottom: 1rem;
 
     display: inline-block;
 
@@ -163,7 +164,7 @@
 
   &::after {
     position: absolute;
-    top: .8rem;
+    top: 1rem;
     right: 0;
 
     display: inline-block;

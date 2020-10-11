@@ -8,13 +8,13 @@
 .intro__info {
   @include media-laptop {
     margin: 0 auto;
-    padding: 15rem 0 69.3rem;
+    padding: 15rem 0 69.4rem;
   }
   @include media-tablet-pt {
     display: flex;
     align-items: center;
 
-    padding: 15rem 0 33.7rem;
+    padding: 15rem 0 37.75rem;
 
     text-align: center;
   }
@@ -27,16 +27,22 @@
 
   width: 100%;
   max-width: 46rem;
-  padding: 34.3rem 0 24.4rem;
+  padding: 34.3rem 0 24.42rem;
 }
 
 .intro__title {
-  @include section-title(31rem);
+  @include section-title(35rem);
+  @include media-tablet-pt {
+    max-width: 23rem;
+    margin-bottom: 1.7em;
+
+    letter-spacing: .06em;
+  }
 
   font-size: 4.4rem;
 
   width: 100%;
-  margin-bottom: .955em;
+  margin-bottom: .95em;
 
   letter-spacing: 0;
 

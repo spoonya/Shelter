@@ -1,9 +1,9 @@
 .friends {
   @include media-tablet-pt {
-    padding: 4.2rem 0;
+    padding: 4.1rem 0;
   }
 
-  padding: 8rem 0 10.1rem;
+  padding: 8rem 0 9.9rem;
 
   background-color: $color-light-m;
 }
@@ -24,5 +24,9 @@
 }
 
 .friends__link {
-  margin-top: 5.529em;
+  @include media-tablet-pt {
+    margin-top: 5.65em;
+  }
+
+  margin-top: 3.65em;
 }

@@ -1,6 +1,9 @@
 .pets {
+  @include media-laptop {
+    padding: 8rem 0 7.53rem;
+  }
   @include media-tablet-pt {
-    padding: 4.2rem 0;
+    padding: 4.28rem 0;
   }
 
   padding: 8rem 0 10rem;
@@ -16,6 +19,12 @@
 
 .pets__title {
   @include section-title(40rem);
+  @include media-laptop {
+    margin-bottom: .875em;
+  }
+  @include media-tablet-pt {
+    margin-bottom: 1.7em;
+  }
 
   width: 100%;
   margin-bottom: 1.714em;
@@ -28,6 +37,7 @@
     justify-content: center;
 
     max-width: 92rem;
+    padding-bottom: 1.3rem;
   }
   @include media-tablet-pt {
     max-width: 60rem;

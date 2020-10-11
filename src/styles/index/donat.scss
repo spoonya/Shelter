@@ -1,9 +1,9 @@
 .donat {
   @include media-tablet-pt {
-    padding: 4.2rem 0;
+    padding: 4.35rem 0;
   }
 
-  padding: 8rem 0 10.2rem;
+  padding: 8rem 0 10rem;
 
   background-color: $color-light-m;
 }
@@ -41,6 +41,8 @@
   @include media-tablet-pt {
     align-items: center;
 
+    margin-bottom: 4rem;
+
     text-align: center;
   }
 
@@ -49,12 +51,18 @@
 
 .donat__title {
   @include section-title(30rem);
+  @include media-tablet-pt {
+    max-width: 22rem;
+    margin-bottom: .95em;
+  }
 
   margin-bottom: .571em;
 }
 
 .donat__bank {
   @include media-tablet-pt {
+    margin-bottom: 1.55em;
+
     letter-spacing: 0;
   }
 
@@ -72,6 +80,9 @@
     font-size: 1.5rem;
 
     align-self: center;
+
+    margin-bottom: 1.4em;
+    padding: .6em 1em;
   }
 
   font-size: 2rem;
@@ -96,6 +107,8 @@
 
 .donat__txt {
   @include media-tablet-pt {
+    max-width: 23.666em;
+
     text-align: justify;
   }
 
