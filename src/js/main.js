@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function (event) {
-
+  //Slider
   if (document.querySelector('.slider')) {
     let position = 0;
     const SLIDES_TO_SHOW = 3;
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     CHECK_BTNS();
   }
 
-
+  //Header dark
   function headerDark() {
     let page = document.title;
     if (page != 'Shelter') {
@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
   }
 
+  //Ative link
   function activeLink() {
     let links = document.querySelectorAll('.header__menu-link');
 
@@ -83,6 +84,31 @@ document.addEventListener('DOMContentLoaded', function (event) {
     } else if (document.title == 'Shelter - Our pets') {
       links[1].classList.add('header__menu-link--active');
     }
+  }
+
+  //Modal
+  if (document.querySelector('.modal-bg')) {
+    const MODAL_BTN = document.querySelectorAll('[modal-btn]');
+    const MODAL_CLOSE = document.querySelector('.modal__close');
+    const MODAL_BG = document.querySelector('.modal-bg');
+    const MODAL_TXT = document.querySelector('.modal__txt');
+    const MODAL_TITLE = document.querySelector('.modal__title');
+
+    MODAL_BTN.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const PET_TXT_DOM = btn.previousSibling;
+        const PET_TITLE_DOM = PET_TXT_DOM.previousSibling;
+
+        MODAL_TITLE.innerHTML = PET_TITLE_DOM.textContent;
+        MODAL_TXT.innerHTML = PET_TXT_DOM.textContent;
+
+        MODAL_BG.classList.add('modal-bg--active');
+      });
+    });
+
+    MODAL_CLOSE.addEventListener('click', () => {
+      MODAL_BG.classList.remove('modal-bg--active');
+    });
   }
 
   activeLink();

@@ -104,6 +104,10 @@
   @include pet-link;
 }
 
+.pets__txt {
+  display: none;
+}
+
 .pets__pag {
   display: flex;
   align-items: center;

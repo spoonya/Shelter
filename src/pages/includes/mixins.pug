@@ -11,13 +11,21 @@ mixin btn(name)
 mixin icon(icon, name)
   svg(class= icon): use(xlink:href="assets/img/sprite.svg#" + name)
 
-mixin pet-item(src, name, className, modif)
+mixin modal
+  .modal-bg
+    .modal
+      h2.modal__title
+      p.modal__txt
+      btn.modal__close: +icon("modal__icon", "close-button")
+
+mixin pet-item(src, name, className, txt, modif)
   div(class= `${className}__item`)
     div(class= `${className}__img-wrp`)
       img(class= `${className}__img ${modif}` src= src, alt="homeless animal")
     div(class= `${className}__content`)
       p(class= `${className}__name`)= name
-      +btn("Learn more")(class=`${className}__link`)
+      p(class= `${className}__txt`)= txt
+      +btn("Learn more")(class=`${className}__link` modal-btn)
 
 mixin help-item(icon, name)
   .help__item

@@ -82,6 +82,10 @@
   @include pet-name;
 }
 
+.slider__txt {
+  display: none;
+}
+
 .slider__link {
   @include pet-link;
 }
