@@ -14,9 +14,9 @@ mixin icon(icon, name)
 mixin modal
   .modal-bg
     .modal
-      h2.modal__title
+      p.modal__title
       p.modal__txt
-      btn.modal__close: +icon("modal__icon", "close-button")
+      button.modal__close: +icon("modal__icon", "close-button")
 
 mixin pet-item(src, name, className, txt, modif)
   div(class= `${className}__item`)
@@ -25,7 +25,7 @@ mixin pet-item(src, name, className, txt, modif)
     div(class= `${className}__content`)
       p(class= `${className}__name`)= name
       p(class= `${className}__txt`)= txt
-      +btn("Learn more")(class=`${className}__link` modal-btn)
+      +btn("Learn more")(class=`${className}__link` data-modal-btn)
 
 mixin help-item(icon, name)
   .help__item

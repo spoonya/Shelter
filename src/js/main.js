@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
   }
 
-  //Ative link
+  //Active link
   function activeLink() {
     let links = document.querySelectorAll('.header__menu-link');
 
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   //Modal
   if (document.querySelector('.modal-bg')) {
-    const MODAL_BTN = document.querySelectorAll('[modal-btn]');
+    const MODAL_BTN = document.querySelectorAll('[data-modal-btn]');
     const MODAL_CLOSE = document.querySelector('.modal__close');
     const MODAL_BG = document.querySelector('.modal-bg');
     const MODAL_TXT = document.querySelector('.modal__txt');
@@ -111,7 +111,47 @@ document.addEventListener('DOMContentLoaded', function (event) {
     });
   }
 
+  //Burger
+  const BURGER_BTN = document.querySelector('[data-burger]');
+  const MENU = document.querySelector('[data-menu]');
+  const PAGE = document.querySelector('.page');
+  const HEADER = document.querySelector('.header');
+  const HEADER_INNER = document.querySelector('.header__inner');
+
+  const toggleBurgerClasses = () => {
+    MENU.classList.toggle('header__menu--burger');
+    BURGER_BTN.classList.toggle('header__burger--revert');
+    PAGE.classList.toggle('page--dark');
+    HEADER.classList.toggle('header--burger');
+    HEADER_INNER.classList.toggle('header__inner--burger');
+  };
+
+  const removeBurgerClasses = () => {
+    MENU.classList.remove('header__menu--burger');
+    BURGER_BTN.classList.remove('header__burger--revert');
+    HEADER.classList.remove('header--burger');
+    HEADER_INNER.classList.remove('header__inner--burger');
+    PAGE.classList.remove('page--dark');
+  };
+
+  window.addEventListener('orientationchange', () => {
+    const afterOrientationChange = () => {
+      if (document.documentElement.clientWidth > 767) {
+        removeBurgerClasses();
+      }
+      window.removeEventListener('resize', afterOrientationChange);
+    };
+    window.addEventListener('resize', afterOrientationChange);
+  });
+
+  BURGER_BTN.addEventListener('click', toggleBurgerClasses);
+
+  document.addEventListener('click', (e) => {
+    const TARGET = e.target;
+    TARGET === PAGE ? removeBurgerClasses() : false;
+  });
+
+
   activeLink();
   headerDark();
-
 });
