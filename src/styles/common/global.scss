@@ -113,6 +113,10 @@ body {
   }
 }
 
+.scroll-hidden {
+  overflow: hidden;
+}
+
 .container {
   @include media-laptop {
     padding: 0 3rem;

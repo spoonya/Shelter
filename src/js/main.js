@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('DOMContentLoaded', () => {
   //Slider
   if (document.querySelector('.slider')) {
     let position = 0;
@@ -81,8 +81,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     if (document.title == 'Shelter') {
       links[0].classList.add('header__menu-link--active');
+      TITLE.setAttribute('onclick', 'return false');
     } else if (document.title == 'Shelter - Our pets') {
       links[1].classList.add('header__menu-link--active');
+      TITLE.removeAttribute('onclick');
     }
   }
 
@@ -111,27 +113,45 @@ document.addEventListener('DOMContentLoaded', function (event) {
     });
   }
 
-  //Burger
+  //Burger-menu
   const BURGER_BTN = document.querySelector('[data-burger]');
   const MENU = document.querySelector('[data-menu]');
   const PAGE = document.querySelector('.page');
   const HEADER = document.querySelector('.header');
   const HEADER_INNER = document.querySelector('.header__inner');
+  const BODY = document.querySelector('body');
+  const TITLE = document.querySelector('.header__title');
+
+  const slideOut = () => {
+    HEADER.classList.toggle('slide-out');
+    setTimeout(removeBurgerClasses, 400);
+  }
 
   const toggleBurgerClasses = () => {
-    MENU.classList.toggle('header__menu--burger');
-    BURGER_BTN.classList.toggle('header__burger--revert');
-    PAGE.classList.toggle('page--dark');
-    HEADER.classList.toggle('header--burger');
-    HEADER_INNER.classList.toggle('header__inner--burger');
+    const IS_OPEN = HEADER.classList.contains('slide-in');
+
+    if (!IS_OPEN) {
+      MENU.classList.toggle('header__menu--burger');
+      BURGER_BTN.classList.toggle('header__burger-btn--revert');
+      HEADER.classList.add('header--burger');
+      HEADER_INNER.classList.toggle('header__inner--burger');
+      PAGE.classList.toggle('page--dark');
+      BODY.classList.toggle('scroll-hidden');
+      HEADER.classList.remove('slide-out');
+      HEADER.classList.toggle('slide-in');
+    } else {
+      slideOut();
+    }
   };
 
   const removeBurgerClasses = () => {
     MENU.classList.remove('header__menu--burger');
-    BURGER_BTN.classList.remove('header__burger--revert');
+    BURGER_BTN.classList.remove('header__burger-btn--revert');
     HEADER.classList.remove('header--burger');
     HEADER_INNER.classList.remove('header__inner--burger');
     PAGE.classList.remove('page--dark');
+    BODY.classList.remove('scroll-hidden');
+    HEADER.classList.remove('slide-in');
   };
 
   window.addEventListener('orientationchange', () => {
@@ -148,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   document.addEventListener('click', (e) => {
     const TARGET = e.target;
-    TARGET === PAGE ? removeBurgerClasses() : false;
+    TARGET === PAGE ? slideOut() : false;
   });
 
 
