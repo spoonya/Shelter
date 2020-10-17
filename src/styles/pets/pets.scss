@@ -130,7 +130,7 @@
   max-height: 52px;
   padding: 1.2em;
 
-  border-radius: 100px;
+  border-radius: 100%;
   background-color: none;
 
   &--active {
@@ -165,48 +165,5 @@
 
   &--double {
     width: 27px;
-  }
-}
-
-.pets__pag-sep {
-  position: relative;
-
-  width: 5px;
-  height: 5px;
-  margin: 0 10px;
-
-  border-radius: 100px;
-  background-color: $color-primary;
-
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 10px;
-
-    display: inline-block;
-
-    width: inherit;
-    height: inherit;
-
-    content: '';
-
-    border-radius: 100px;
-    background-color: inherit;
-  }
-
-  &::after {
-    position: absolute;
-    top: 0;
-    right: 10px;
-
-    display: inline-block;
-
-    width: inherit;
-    height: inherit;
-
-    content: '';
-
-    border-radius: 100px;
-    background-color: inherit;
   }
 }

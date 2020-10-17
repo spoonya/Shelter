@@ -65,7 +65,7 @@
     margin: 0 auto;
   }
   @include media-tablet-pt {
-    max-width: 17.875em;
+    padding: 0 .9em;
 
     text-align: justify;
   }

@@ -89,29 +89,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //Modal
-  if (document.querySelector('.modal-bg')) {
-    const MODAL_BTN = document.querySelectorAll('[data-modal-btn]');
-    const MODAL_CLOSE = document.querySelector('.modal__close');
-    const MODAL_BG = document.querySelector('.modal-bg');
-    const MODAL_TXT = document.querySelector('.modal__txt');
-    const MODAL_TITLE = document.querySelector('.modal__title');
+  const MODAL_BTN = document.querySelectorAll('[data-modal-btn]');
+  const MODAL_CLOSE = document.querySelector('[data-modal-close]');
+  const MODAL_BG = document.querySelector('.modal-bg');
 
-    MODAL_BTN.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const PET_TXT_DOM = btn.previousSibling;
-        const PET_TITLE_DOM = PET_TXT_DOM.previousSibling;
-
-        MODAL_TITLE.innerHTML = PET_TITLE_DOM.textContent;
-        MODAL_TXT.innerHTML = PET_TXT_DOM.textContent;
-
-        MODAL_BG.classList.add('modal-bg--active');
-      });
+  MODAL_BTN.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      BODY.classList.add('scroll-hidden');
+      MODAL_BG.classList.add('modal-bg--active');
     });
+  });
 
-    MODAL_CLOSE.addEventListener('click', () => {
-      MODAL_BG.classList.remove('modal-bg--active');
-    });
-  }
+  MODAL_CLOSE.addEventListener('click', () => {
+    MODAL_BG.classList.remove('modal-bg--active');
+    BODY.classList.remove('scroll-hidden');
+  });
+
 
   //Burger-menu
   const BURGER_BTN = document.querySelector('[data-burger]');
@@ -124,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const slideOut = () => {
     HEADER.classList.toggle('slide-out');
-    setTimeout(removeBurgerClasses, 400);
+    setTimeout(removeBurgerClasses, 300);
   }
 
   const toggleBurgerClasses = () => {
@@ -150,8 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     HEADER.classList.remove('header--burger');
     HEADER_INNER.classList.remove('header__inner--burger');
     PAGE.classList.remove('page--dark');
-    BODY.classList.remove('scroll-hidden');
     HEADER.classList.remove('slide-in');
+    BODY.classList.remove('scroll-hidden');
   };
 
   window.addEventListener('orientationchange', () => {
@@ -169,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const TARGET = e.target;
     TARGET === PAGE ? slideOut() : false;
+    TARGET === MODAL_BG ? MODAL_BG.classList.remove('modal-bg--active') : false;
   });
 
 

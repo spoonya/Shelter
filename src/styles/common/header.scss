@@ -40,7 +40,7 @@
     }
   }
 
-  .header__burger-btn {
+  .header__burger-line {
     background-color: $color-dark-default;
   }
 }
@@ -65,7 +65,7 @@
     }
   }
 
-  .header__burger-btn {
+  .header__burger-line {
     background-color: $color-primary;
   }
 
@@ -98,7 +98,7 @@
   }
 
   display: flex;
-  align-items: baseline;
+  align-items: center;
   align-self: flex-start;
   justify-content: space-between;
 }
@@ -126,19 +126,27 @@
 
 .header__burger-btn {
   @include media-tablet-pt {
-    display: block;
+    display: flex;
   }
 
-  position: relative;
-
   display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-right: 4.3rem;
+  padding: 1.3rem 0;
+
+  transition: transform .5s linear;
+}
+
+.header__burger-line {
+  position: relative;
 
   width: 3rem;
   height: .2rem;
-  margin-right: 4.3rem;
 
   content: '';
-  transition: transform .5s linear;
 
   background-color: $color-primary;
 
@@ -293,17 +301,14 @@
 }
 
 .slide-out {
-  animation: slide-out .7s backwards;
+  animation: slide-out .6s backwards;
   animation-delay: .1s;
-
   @keyframes slide-out {
     0% {
       transform: translateX(0);
     }
 
     50% {
-      transform: translateX(100%);
-
       opacity: 0;
     }
   }

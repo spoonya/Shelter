@@ -14,17 +14,36 @@ mixin icon(icon, name)
 mixin modal
   .modal-bg
     .modal
-      p.modal__title
-      p.modal__txt
-      button.modal__close: +icon("modal__icon", "close-button")
+      +btn("")(class="modal__close" data-modal-close): +icon("modal__icon", "close-button")
+      .modal__img-wrapper
+        img.modal__img(src="assets/img/friends/pet-2.png" alt="pet" data-modal-img)
+      .modal__content
+        p.modal__name(data-modal-name) Jennifer
+        .modal__type-breed
+          p.modal__type(data-modal-type) Dog
+          span.modal__dash -
+          p.modal__breed(data-modal-breed) Labrador
+        p.modal__txt(data-modal-txt) Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.
+        ul.modal__info
+          li.modal__info-item
+            span.modal__info-key Age:
+            span.modal__info-value(data-modal-age) 2 months
+          li.modal__info-item
+            span.modal__info-key Inoculations:
+            span.modal__info-value(data-modal-inoculations) none
+          li.modal__info-item
+            span.modal__info-key Diseases:
+            span.modal__info-value(data-modal-diseases) none
+          li.modal__info-item
+            span.modal__info-key Parasites:
+            span.modal__info-value(data-modal-parasites) none
 
-mixin pet-item(src, name, className, txt, modif)
+mixin pet-item(src, name, className, modif)
   div(class= `${className}__item`)
     div(class= `${className}__img-wrp`)
       img(class= `${className}__img ${modif}` src= src, alt="homeless animal")
     div(class= `${className}__content`)
       p(class= `${className}__name`)= name
-      p(class= `${className}__txt`)= txt
       +btn("Learn more")(class=`${className}__link` data-modal-btn)
 
 mixin help-item(icon, name)
