@@ -93,18 +93,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const MODAL_CLOSE = document.querySelector('[data-modal-close]');
   const MODAL_BG = document.querySelector('.modal-bg');
 
-  MODAL_BTN.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      BODY.classList.add('scroll-hidden');
-      MODAL_BG.classList.add('modal-bg--active');
-    });
-  });
+  const modalOpen = () => {
+    BODY.classList.add('scroll-hidden');
+    MODAL_BG.classList.add('modal-bg--active');
+  };
 
-  MODAL_CLOSE.addEventListener('click', () => {
+  const modalClose = () => {
     MODAL_BG.classList.remove('modal-bg--active');
     BODY.classList.remove('scroll-hidden');
+  };
+
+  MODAL_BTN.forEach((btn) => {
+    btn.addEventListener('click', modalOpen);
   });
 
+  MODAL_CLOSE.addEventListener('click', modalClose);
 
   //Burger-menu
   const BURGER_BTN = document.querySelector('[data-burger]');
@@ -162,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (e) => {
     const TARGET = e.target;
     TARGET === PAGE ? slideOut() : false;
-    TARGET === MODAL_BG ? MODAL_BG.classList.remove('modal-bg--active') : false;
+    TARGET === MODAL_BG ? modalClose() : false;
   });
 
 
