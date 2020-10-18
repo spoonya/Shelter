@@ -17,7 +17,7 @@ mixin modal
       +btn("")(class="modal__close" data-modal-close): +icon("modal__icon", "close-button")
       .modal__inner
         .modal__img-wrapper
-          img.modal__img(src="assets/img/friends/pet-2.png" alt="pet" data-modal-img)
+          img.modal__img(src="assets/img/friends/pet-2.png" alt="homeless pet" data-modal-img)
         .modal__content
           p.modal__name(data-modal-name) Jennifer
           .modal__type-breed
@@ -42,7 +42,7 @@ mixin modal
 mixin pet-item(src, name, className, modif)
   div(class= `${className}__item`)
     div(class= `${className}__img-wrp`)
-      img(class= `${className}__img ${modif}` src= src, alt="homeless animal")
+      img(class= `${className}__img ${modif}` src= src, alt="homeless pet")
     div(class= `${className}__content`)
       p(class= `${className}__name`)= name
       +btn("Learn more")(class=`${className}__link` data-modal-btn)

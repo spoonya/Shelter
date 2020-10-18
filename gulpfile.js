@@ -10,6 +10,8 @@ const clean = require('./gulp/tasks/clean')
 const copyDependencies = require('./gulp/tasks/copyDependencies')
 const lighthouse = require('./gulp/tasks/lighthouse')
 const svgSprite = require('./gulp/tasks/svgSprite')
+const json = require('./gulp/tasks/json')
+
 
 function setMode(isProduction = false) {
   return cb => {
@@ -18,7 +20,7 @@ function setMode(isProduction = false) {
   }
 }
 
-const dev = gulp.parallel(pug2html, styles, script, fonts, imageMinify, svgSprite)
+const dev = gulp.parallel(pug2html, styles, script, fonts, imageMinify, svgSprite, json)
 
 const build = gulp.series(clean, copyDependencies, dev)
 

@@ -6,7 +6,6 @@
   left: 0;
 
   display: flex;
-  visibility: hidden;
   align-items: center;
   justify-content: center;
 
@@ -14,14 +13,7 @@
 
   transition: visibilty 0s, opacity .1s linear;
 
-  opacity: 0;
   background-color: $color-blackout;
-
-  &--active {
-    visibility: visible;
-
-    opacity: 1;
-  }
 }
 
 .modal {
@@ -55,7 +47,7 @@
     min-width: 35rem;
     max-width: 35rem;
     min-height: 35rem;
-    max-height: 35rem;
+    // max-height: 35rem;
   }
   @include media-tablet-pt {
     display: none;
@@ -70,6 +62,7 @@
   max-width: 50rem;
   min-height: 50rem;
   max-height: 50rem;
+  margin-right: 2rem;
 
   border-top-left-radius: 9px;
   border-bottom-left-radius: 9px;
@@ -79,6 +72,10 @@
   @include pet-img;
 
   align-self: center;
+
+  min-height: 100%;
+
+  object-fit: cover;
 }
 
 .modal__content {
@@ -139,23 +136,13 @@
 .modal__info-key {
   font-weight: 700;
 
-  margin-right: .7rem;
-}
-
-.modal__info-item {
   position: relative;
 
-  display: flex;
-  align-items: center;
-
-  margin-left: 1rem;
-
-  &:not(:last-child) {
-    margin-bottom: 1.1rem;
-  }
+  margin-right: .7rem;
 
   &::before {
     position: absolute;
+    top: 50%;
     left: -1rem;
 
     display: block;
@@ -164,9 +151,18 @@
     height: 4px;
 
     content: '';
+    transform: translateY(-50%);
 
     border-radius: 50%;
     background-color: $color-primary;
+  }
+}
+
+.modal__info-item {
+  margin-left: 1rem;
+
+  &:not(:last-child) {
+    margin-bottom: 1.1rem;
   }
 }
 

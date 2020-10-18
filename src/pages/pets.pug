@@ -9,16 +9,7 @@ block content
       .container
         .pets__inner
           h2.pets__title Our friends who <br> are looking for a house
-          +modal
           .pets__wrapper
-            +pet-item("assets/img/friends/pet-1.png", "Katrine", "pets")
-            +pet-item("assets/img/friends/pet-2.png", "Jennifer", "pets")
-            +pet-item("assets/img/friends/pet-3.png", "Woody", "pets")
-            +pet-item("assets/img/friends/pet-4.png", "Sophia", "pets")
-            +pet-item("assets/img/friends/pet-5.png", "Timmy", "pets")
-            +pet-item("assets/img/friends/pet-6.png", "Charly", "pets")
-            +pet-item("assets/img/friends/pet-7.png", "Scarlett", "pets")
-            +pet-item("assets/img/friends/pet-8.png", "Freddy", "pets")
           .pets__pag
             +btn("")(class="pets__pag-link pets__pag-link--inactive" disabled): +icon("pets__pag-icon pets__pag-icon--double pets__pag-icon--revert", "arrow-double")
             +btn("")(class="pets__pag-link pets__pag-link--inactive" disabled): +icon("pets__pag-icon pets__pag-icon--revert", "arrow")

@@ -28,15 +28,10 @@ block content
       .container
         .friends__inner
           h2.friends__title Our friends who <br> are looking for a house
-          +modal
           .slider
             button.slider__btn.slider__btn--prev: +icon("slider__icon", "arrow-left")
             .slider__wrapper
               .slider__track
-                +pet-item("assets/img/friends/pet-1.png", "Katrine", "slider")
-                +pet-item("assets/img/friends/pet-2.png", "Jennifer", "slider")
-                +pet-item("assets/img/friends/pet-3.png", "Woody", "slider")
-                +pet-item("assets/img/friends/test.png", "Alexandr", "slider")
             button.slider__btn.slider__btn--next: +icon("slider__icon", "arrow-right")
           +link("pets.html", "Get to know the rest")(class="friends__link")
 

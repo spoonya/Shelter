@@ -16,9 +16,15 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.4",
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.11.0",
     "@htmlacademy/editorconfig-cli": "^1.0.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^8.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.26.12",
     "chrome-launcher": "^0.13.4",
     "circular-dependency-plugin": "^5.2.0",
@@ -40,6 +46,8 @@
     "gulp-eslint": "^6.0.0",
     "gulp-html-bem-validator": "^1.0.5",
     "gulp-imagemin": "^7.1.0",
+    "gulp-json-transform": "^0.4.7",
+    "gulp-jsonminify": "^1.1.0",
     "gulp-npm-dist": "^1.0.3",
     "gulp-npm-files": "^0.1.3",
     "gulp-plumber": "^1.2.1",
@@ -64,6 +72,7 @@
     "webpack-stream": "^5.2.1"
   },
   "dependencies": {
+    "@babel/runtime": "^7.12.1",
     "jquery": "^3.5.0",
     "normalize.css": "^8.0.1"
   },
