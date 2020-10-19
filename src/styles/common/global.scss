@@ -94,6 +94,7 @@ body {
   &--dark {
     position: relative;
 
+    cursor: pointer;
     &::after {
       position: absolute;
       z-index: 1500;

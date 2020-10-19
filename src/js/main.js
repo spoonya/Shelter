@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="${className}__name">${PETS[i].name}</p><button class="btn ${className}__link" data-modal-btn id=${i}>Learn
             more</button>
         </div>`;
+
       parent.insertAdjacentHTML('beforeend', PET_ITEM);
     }
   };
@@ -56,6 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let modal;
 
   const modalCreate = (id) => {
+    for (let i = 0; i < PETS_LENGTH; i++) {
+      if (PETS[i].inoculations.length > 1) PETS[i].inoculations = PETS[i].inoculations.join(', ').split();
+      if (PETS[i].diseases.length > 1) PETS[i].diseases = PETS[i].diseases.join(', ').split();
+      if (PETS[i].parasites.length > 1) PETS[i].parasites = PETS[i].parasites.join(', ').split();
+    }
     // const PET_ID = PETS.find((el) => el.id === id);
     modal =
       `<div class="modal-bg">
@@ -86,21 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     </div>`;
-
     BODY.insertAdjacentHTML('beforeend', modal);
   };
 
-  let modalCloseBtn;
   const MODAL_OPEN = document.querySelectorAll('[data-modal-btn]');
-  // const MODAL_IMG = document.querySelector('[data-modal-img]');
-  // const MODAL_NAME = document.querySelector('[data-modal-name]');
-  // const MODAL_TYPE = document.querySelector('[data-modal-type]');
-  // const MODAL_BREED = document.querySelector('[data-modal-breed]');
-  // const MODAL_TXT = document.querySelector('[data-modal-txt]');
-  // const MODAL_AGE = document.querySelector('[data-modal-age]');
-  // const MODAL_INOCULATIONS = document.querySelector('[data-modal-inoculations]');
-  // const MODAL_DISEASES = document.querySelector('[data-modal-diseases]');
-  // const MODAL_PARASITES = document.querySelector('[data-modal-parasites]');
+  let modalCloseBtn;
   let modalBg;
 
   const modalOpen = () => {
@@ -162,16 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
     BODY.classList.remove('scroll-hidden');
   };
 
-  window.addEventListener('orientationchange', () => {
-    const afterOrientationChange = () => {
-      if (document.documentElement.clientWidth > 767) {
-        removeBurgerClasses();
-      }
-      window.removeEventListener('resize', afterOrientationChange);
-    };
-    window.addEventListener('resize', afterOrientationChange);
-  });
-
   BURGER_BTN.addEventListener('click', toggleBurgerClasses);
 
   //Blackout
@@ -181,73 +167,69 @@ document.addEventListener('DOMContentLoaded', () => {
     TARGET === modalBg ? modalClose() : false;
   });
 
-
   //Slider
   if (document.querySelector('.slider')) {
-    let position = 0;
-    const SLIDES_TO_SHOW = 3;
-    const SLIDES_TO_SCROLL = 1;
-    const CONTAINER = document.querySelector('.slider');
+    let items = document.querySelectorAll('.slider__item');
     const TRACK = document.querySelector('.slider__track');
-    const ITEMS = document.querySelectorAll('.slider__item');
-    const ITEMS_COUNT = ITEMS.length;
     const BTN_PREV = document.querySelector('.slider__btn--prev');
     const BTN_NEXT = document.querySelector('.slider__btn--next');
-    const ITEM_WIDTH = TRACK.clientWidth / SLIDES_TO_SHOW;
-    const MOVE_POSITION = SLIDES_TO_SCROLL * ITEM_WIDTH + 30;
+    let slidesToScroll;
 
-    // ITEMS.forEach((item) => {
-    //   if (SLIDES_TO_SHOW === 1) {
-    //     item.style.minWidth = `${ITEM_WIDTH}` + 'px';
-    //   } else {
-    //     item.style.minWidth = `${ITEM_WIDTH}` -90 + 'px';
-    //   }
-    // });
+    var sliderWidthCheck = () => {
+      if (TRACK.clientWidth === 980) {
+        slidesToScroll = 3;
+      } else if (TRACK.clientWidth === 580) {
+        slidesToScroll = 2;
+      } else {
+        slidesToScroll = 1;
+      }
+    };
+
+    const sliderAddAnime = () => {
+      TRACK.classList.add('slider__anime');
+    };
+
+    const sliderRemoveAnime = () => {
+      TRACK.classList.remove('slider__anime');
+    };
+
+    const SET_POSITION = () => {
+      sliderRemoveAnime();
+      setTimeout(sliderAddAnime, 100);
+    }
 
     BTN_NEXT.addEventListener('click', () => {
-      const ITEMS_LEFT = ITEMS_COUNT - (Math.abs(position) + SLIDES_TO_SHOW * ITEM_WIDTH) / ITEM_WIDTH;
+      items = document.querySelectorAll('.slider__item');
 
-      position -= ITEMS_LEFT >= SLIDES_TO_SCROLL ? MOVE_POSITION : ITEMS_LEFT * ITEM_WIDTH;
-
-
-      SET_POSITION();
+      for (let i = 0; i < slidesToScroll; i++) {
+        TRACK.append(items[i]);
+      }
+      SET_POSITION(true);
     });
 
     BTN_PREV.addEventListener('click', () => {
-      const ITEMS_LEFT = Math.abs(position) / ITEM_WIDTH;
+      items = document.querySelectorAll('.slider__item');
 
-      position += ITEMS_LEFT >= SLIDES_TO_SCROLL ? MOVE_POSITION : ITEMS_LEFT * ITEM_WIDTH;
+      for (let i = 0; i < slidesToScroll; i++) {
+        TRACK.prepend(items[items.length - 1 - i]);
+      }
 
-
-      SET_POSITION();
+      SET_POSITION(false);
     });
-
-    const SET_POSITION = () => {
-      TRACK.style.transform = `translateX(${position}px)`;
-      CHECK_BTNS();
-    }
-
-    const CHECK_BTNS = () => {
-      function disabler(btnName, bool) {
-        btnName.disabled = bool;
-        bool ? btnName.classList.add('slider__btn--inactive') : btnName.classList.remove('slider__btn--inactive');
-      }
-
-      if (position === 0) {
-        disabler(BTN_PREV, true);
-      } else {
-        disabler(BTN_PREV, false);
-      }
-
-      if (position <= -(ITEMS_COUNT - SLIDES_TO_SHOW) * ITEM_WIDTH) {
-        disabler(BTN_NEXT, true);
-      } else {
-        disabler(BTN_NEXT, false);
-      }
-    }
-    CHECK_BTNS();
   }
+
+  window.addEventListener('orientationchange', () => {
+    const afterOrientationChange = () => {
+      if (document.documentElement.clientWidth > 767) {
+        removeBurgerClasses();
+      }
+      sliderWidthCheck();
+      window.removeEventListener('resize', afterOrientationChange);
+    };
+    window.addEventListener('resize', afterOrientationChange);
+  });
 
   activeLink();
   headerDark();
+  sliderWidthCheck();
 });

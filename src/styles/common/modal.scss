@@ -11,6 +11,7 @@
 
   width: 100%;
 
+  cursor: pointer;
   transition: visibilty 0s, opacity .1s linear;
 
   background-color: $color-blackout;
@@ -28,6 +29,8 @@
 
   width: 100%;
   max-width: 97rem;
+
+  cursor: default;
 
   border-radius: 9px;
   background-color: $color-light-s;
