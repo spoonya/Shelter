@@ -23,25 +23,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //JSON parse
+
+
   let dataFile = require('../json/pets.json');
   const parseJson = (json) => {
     return JSON.parse(JSON.stringify(json));
   };
-  const PETS = parseJson(dataFile);
 
   //Pet-item dynamic creation
   const SLIDER_TRACK = document.querySelector('.slider__track');
   const PETS_WRAPPER = document.querySelector('.pets__wrapper');
-  const PETS_LENGTH = PETS.length;
 
-  const createPetItem = (className, parent) => {
+  const shuffleArray = (arr)=> {
+    for (let i = arr.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  }
+
+  let pets = shuffleArray(parseJson(dataFile));
+  const PETS_LENGTH = pets.length;
+  console.log(pets);
+
+  const createPetItem = (className, parent, isSliderRand = false) => {
+    isSliderRand ? pets = shuffleArray(pets) : false;
+    if (isSliderRand) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    }
+
     for (let i = 0; i < PETS_LENGTH; i++) {
       const PET_ITEM =
         `<div class="${className}__item">
-        <div class="${className}__img-wrp"><img class="${className}__img undefined" src="${PETS[i].img}"
+        <div class="${className}__img-wrp"><img class="${className}__img undefined" src="${pets[i].img}"
             alt="homeless pet"></div>
         <div class="${className}__content">
-          <p class="${className}__name">${PETS[i].name}</p><button class="btn ${className}__link" data-modal-btn id=${i}>Learn
+          <p class="${className}__name">${pets[i].name}</p><button class="btn ${className}__link" data-modal-btn id=${pets[i].id}>Learn
             more</button>
         </div>`;
 
@@ -58,35 +79,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modalCreate = (id) => {
     for (let i = 0; i < PETS_LENGTH; i++) {
-      if (PETS[i].inoculations.length > 1) PETS[i].inoculations = PETS[i].inoculations.join(', ').split();
-      if (PETS[i].diseases.length > 1) PETS[i].diseases = PETS[i].diseases.join(', ').split();
-      if (PETS[i].parasites.length > 1) PETS[i].parasites = PETS[i].parasites.join(', ').split();
+      if (pets[i].inoculations.length > 1) pets[i].inoculations = pets[i].inoculations.join(', ').split();
+      if (pets[i].diseases.length > 1) pets[i].diseases = pets[i].diseases.join(', ').split();
+      if (pets[i].parasites.length > 1) pets[i].parasites = pets[i].parasites.join(', ').split();
     }
-    // const PET_ID = PETS.find((el) => el.id === id);
+    const PET_ID = pets.find((el) => el.id === id);
     modal =
       `<div class="modal-bg">
       <div class="modal"><button class="btn modal__close" data-modal-close><svg class="modal__icon">
             <use xlink:href="assets/img/sprite.svg#close-button"></use>
           </svg></button>
         <div class="modal__inner">
-          <div class="modal__img-wrapper"><img class="modal__img" src="${PETS[id].img}"
+          <div class="modal__img-wrapper"><img class="modal__img" src="${PET_ID.img}"
               alt="homeless pet" data-modal-img></div>
           <div class="modal__content">
-            <p class="modal__name" data-modal-name>${PETS[id].name}</p>
+            <p class="modal__name" data-modal-name>${PET_ID.name}</p>
             <div class="modal__type-breed">
-              <p class="modal__type" data-modal-type>${PETS[id].type}</p><span class="modal__dash">-</span>
-              <p class="modal__breed" data-modal-breed>${PETS[id].breed}</p>
+              <p class="modal__type" data-modal-type>${PET_ID.type}</p><span class="modal__dash">-</span>
+              <p class="modal__breed" data-modal-breed>${PET_ID.breed}</p>
             </div>
-            <p class="modal__txt" data-modal-txt>${PETS[id].description}</p>
+            <p class="modal__txt" data-modal-txt>${PET_ID.description}</p>
             <ul class="modal__info">
               <li class="modal__info-item"><span class="modal__info-key">Age:</span><span
-                  class="modal__info-value" data-modal-age>${PETS[id].age}</span></li>
+                  class="modal__info-value" data-modal-age>${PET_ID.age}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Inoculations:</span><span
-                  class="modal__info-value" data-modal-inoculations>${PETS[id].inoculations}</span></li>
+                  class="modal__info-value" data-modal-inoculations>${PET_ID.inoculations}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Diseases:</span><span
-                  class="modal__info-value" data-modal-diseases>${PETS[id].diseases}</span></li>
+                  class="modal__info-value" data-modal-diseases>${PET_ID.diseases}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Parasites:</span><span
-                  class="modal__info-value" data-modal-parasites>${PETS[id].parasites}</span></li>
+                  class="modal__info-value" data-modal-parasites>${PET_ID.parasites}</span></li>
             </ul>
           </div>
         </div>
@@ -176,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let slidesToScroll;
 
     var sliderWidthCheck = () => {
-      if (TRACK.clientWidth === 980) {
+      if (TRACK.clientWidth === 990) {
         slidesToScroll = 3;
       } else if (TRACK.clientWidth === 580) {
         slidesToScroll = 2;
@@ -200,20 +221,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     BTN_NEXT.addEventListener('click', () => {
       items = document.querySelectorAll('.slider__item');
-
-      for (let i = 0; i < slidesToScroll; i++) {
-        TRACK.append(items[i]);
-      }
+      createPetItem('slider', SLIDER_TRACK, true);
+      // for (let i = 0; i < slidesToScroll; i++) {
+      //   TRACK.append(items[i]);
+      // }
       SET_POSITION(true);
     });
 
     BTN_PREV.addEventListener('click', () => {
       items = document.querySelectorAll('.slider__item');
-
-      for (let i = 0; i < slidesToScroll; i++) {
-        TRACK.prepend(items[items.length - 1 - i]);
-      }
-
+      createPetItem('slider', SLIDER_TRACK, true);
+      // for (let i = 0; i < slidesToScroll; i++) {
+      //   TRACK.prepend(items[items.length - 1 - i]);
+      // }
       SET_POSITION(false);
     });
   }
@@ -231,5 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   activeLink();
   headerDark();
+  shuffleArray(pets);
   sliderWidthCheck();
 });

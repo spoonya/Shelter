@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "name": "Jennifer",
     "img": "assets/img/friends/pet-1.png",
     "type": "Dog",
@@ -11,6 +12,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 1,
     "name": "Sophia",
     "img": "assets/img/friends/pet-2.png",
     "type": "Dog",
@@ -22,6 +24,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 2,
     "name": "Woody",
     "img": "assets/img/friends/pet-3.png",
     "type": "Dog",
@@ -33,6 +36,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 3,
     "name": "Scarlett",
     "img": "assets/img/friends/pet-4.png",
     "type": "Dog",
@@ -44,6 +48,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 4,
     "name": "Katrine",
     "img": "assets/img/friends/pet-5.png",
     "type": "Cat",
@@ -55,6 +60,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 5,
     "name": "Timmy",
     "img": "assets/img/friends/pet-6.png",
     "type": "Cat",
@@ -66,6 +72,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 6,
     "name": "Freddie",
     "img": "assets/img/friends/pet-7.png",
     "type": "Cat",
@@ -77,6 +84,7 @@
     "parasites": ["none"]
   },
   {
+    "id": 7,
     "name": "Charly",
     "img": "assets/img/friends/pet-8.png",
     "type": "Dog",
