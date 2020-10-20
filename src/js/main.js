@@ -23,8 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //JSON parse
-
-
   let dataFile = require('../json/pets.json');
   const parseJson = (json) => {
     return JSON.parse(JSON.stringify(json));
@@ -33,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
   //Pet-item dynamic creation
   const SLIDER_TRACK = document.querySelector('.slider__track');
   const PETS_WRAPPER = document.querySelector('.pets__wrapper');
+
+  const modalOpenEventAdd = () => document.querySelectorAll('[data-modal-btn]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      modalCreate(parseInt(btn.getAttribute('id')));
+      modalOpen();
+    });
+  });
 
   const shuffleArray = (arr)=> {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -68,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       parent.insertAdjacentHTML('beforeend', PET_ITEM);
     }
+    modalOpenEventAdd();
   };
 
   SLIDER_TRACK ? createPetItem('slider', SLIDER_TRACK) : false;
@@ -83,31 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pets[i].diseases.length > 1) pets[i].diseases = pets[i].diseases.join(', ').split();
       if (pets[i].parasites.length > 1) pets[i].parasites = pets[i].parasites.join(', ').split();
     }
-    const PET_ID = pets.find((el) => el.id === id);
+    const PET = pets.find((el) => el.id === id);
     modal =
       `<div class="modal-bg">
       <div class="modal"><button class="btn modal__close" data-modal-close><svg class="modal__icon">
             <use xlink:href="assets/img/sprite.svg#close-button"></use>
           </svg></button>
         <div class="modal__inner">
-          <div class="modal__img-wrapper"><img class="modal__img" src="${PET_ID.img}"
+          <div class="modal__img-wrapper"><img class="modal__img" src="${PET.img}"
               alt="homeless pet" data-modal-img></div>
           <div class="modal__content">
-            <p class="modal__name" data-modal-name>${PET_ID.name}</p>
+            <p class="modal__name" data-modal-name>${PET.name}</p>
             <div class="modal__type-breed">
-              <p class="modal__type" data-modal-type>${PET_ID.type}</p><span class="modal__dash">-</span>
-              <p class="modal__breed" data-modal-breed>${PET_ID.breed}</p>
+              <p class="modal__type" data-modal-type>${PET.type}</p><span class="modal__dash">-</span>
+              <p class="modal__breed" data-modal-breed>${PET.breed}</p>
             </div>
-            <p class="modal__txt" data-modal-txt>${PET_ID.description}</p>
+            <p class="modal__txt" data-modal-txt>${PET.description}</p>
             <ul class="modal__info">
               <li class="modal__info-item"><span class="modal__info-key">Age:</span><span
-                  class="modal__info-value" data-modal-age>${PET_ID.age}</span></li>
+                  class="modal__info-value" data-modal-age>${PET.age}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Inoculations:</span><span
-                  class="modal__info-value" data-modal-inoculations>${PET_ID.inoculations}</span></li>
+                  class="modal__info-value" data-modal-inoculations>${PET.inoculations}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Diseases:</span><span
-                  class="modal__info-value" data-modal-diseases>${PET_ID.diseases}</span></li>
+                  class="modal__info-value" data-modal-diseases>${PET.diseases}</span></li>
               <li class="modal__info-item"><span class="modal__info-key">Parasites:</span><span
-                  class="modal__info-value" data-modal-parasites>${PET_ID.parasites}</span></li>
+                  class="modal__info-value" data-modal-parasites>${PET.parasites}</span></li>
             </ul>
           </div>
         </div>
@@ -116,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
     BODY.insertAdjacentHTML('beforeend', modal);
   };
 
-  const MODAL_OPEN = document.querySelectorAll('[data-modal-btn]');
   let modalCloseBtn;
   let modalBg;
 
@@ -131,13 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     BODY.classList.remove('scroll-hidden');
     document.querySelector('.modal-bg').remove();
   };
-
-  MODAL_OPEN.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      modalCreate(parseInt(btn.getAttribute('id')));
-      modalOpen();
-    });
-  });
 
   //Burger-menu
   const BURGER_BTN = document.querySelector('[data-burger]');
@@ -189,22 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   //Slider
-  if (document.querySelector('.slider')) {
-    let items = document.querySelectorAll('.slider__item');
-    const TRACK = document.querySelector('.slider__track');
+  const TRACK = document.querySelector('.slider__track');
+
+  const sliderWidthCheck = () => {
+    if (TRACK === null) return;
+    if (TRACK.clientWidth === 990) {
+      slidesToScroll = 3;
+    } else if (TRACK.clientWidth === 580) {
+      slidesToScroll = 2;
+    } else {
+      slidesToScroll = 1;
+    }
+  };
+
+  if (TRACK) {
+    // let items = document.querySelectorAll('.slider__item');
     const BTN_PREV = document.querySelector('.slider__btn--prev');
     const BTN_NEXT = document.querySelector('.slider__btn--next');
-    let slidesToScroll;
-
-    var sliderWidthCheck = () => {
-      if (TRACK.clientWidth === 990) {
-        slidesToScroll = 3;
-      } else if (TRACK.clientWidth === 580) {
-        slidesToScroll = 2;
-      } else {
-        slidesToScroll = 1;
-      }
-    };
+    // let slidesToScroll;
 
     const sliderAddAnime = () => {
       TRACK.classList.add('slider__anime');
@@ -236,6 +236,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
       SET_POSITION(false);
     });
+
+    sliderWidthCheck();
   }
 
   window.addEventListener('orientationchange', () => {
@@ -252,5 +254,4 @@ document.addEventListener('DOMContentLoaded', () => {
   activeLink();
   headerDark();
   shuffleArray(pets);
-  sliderWidthCheck();
 });
