@@ -56,15 +56,6 @@
   @include pet-item;
   @include media-laptop {
     margin: 0 2rem 3rem;
-
-    &:nth-last-child(-n+2) {
-      display: none;
-    }
-  }
-  @include media-tablet-pt {
-    &:nth-last-child(-n+5) {
-      display: none;
-    }
   }
 
   margin: 0 0 3rem;

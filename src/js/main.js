@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  //Header dark
-  function headerDark() {
+  /*****Header secondary*****/
+  function headerSecondary() {
     let page = document.title;
     if (page != 'Shelter') {
       document.querySelector('.header').classList.add('header--dark');
@@ -9,37 +9,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  //Active link
+  /*****Active link*****/
   function activeLink() {
-    let links = document.querySelectorAll('.header__menu-link');
+    const LINKS = document.querySelectorAll('.header__menu-link');
 
     if (document.title == 'Shelter') {
-      links[0].classList.add('header__menu-link--active');
+      LINKS[0].classList.add('header__menu-link--active');
       TITLE.setAttribute('onclick', 'return false');
     } else if (document.title == 'Shelter - Our pets') {
-      links[1].classList.add('header__menu-link--active');
+      LINKS[1].classList.add('header__menu-link--active');
       TITLE.removeAttribute('onclick');
     }
   }
 
-  //JSON parse
-  let dataFile = require('../json/pets.json');
+  /*****JSON parse*****/
+  const DATA_FILE = require('../json/pets.json');
   const parseJson = (json) => {
     return JSON.parse(JSON.stringify(json));
   };
 
-  //Pet-item dynamic creation
+  /*****Pet-item dynamic creation*****/
   const SLIDER_TRACK = document.querySelector('.slider__track');
   const PETS_WRAPPER = document.querySelector('.pets__wrapper');
 
-  const modalOpenEventAdd = () => document.querySelectorAll('[data-modal-btn]').forEach((btn) => {
+  const modalOpenBtnEventAdd = () => document.querySelectorAll('[data-modal-btn]').forEach((btn) => {
     btn.addEventListener('click', () => {
       modalCreate(parseInt(btn.getAttribute('id')));
       modalOpen();
     });
   });
 
-  const shuffleArray = (arr)=> {
+  //Shuffle array
+  const shuffleArray = (arr) => {
     for (let i = arr.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = arr[i];
@@ -49,42 +50,194 @@ document.addEventListener('DOMContentLoaded', () => {
     return arr;
   }
 
-  let pets = shuffleArray(parseJson(dataFile));
-  const PETS_LENGTH = pets.length;
-  console.log(pets);
+  let pets = shuffleArray(parseJson(DATA_FILE));
+  let petsLength = pets.length;
 
-  const createPetItem = (className, parent, isSliderRand = false) => {
-    isSliderRand ? pets = shuffleArray(pets) : false;
-    if (isSliderRand) {
-      while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-      }
+  //Create pagination items
+  const PAG_FIRST_BTN = document.querySelector('[data-pag-first]');
+  const PAG_PREV_BTN = document.querySelector('[data-pag-prev]');
+  const PAG_PAGE = document.querySelector('[data-pag-page]');
+  const PAG_NEXT_BTN = document.querySelector('[data-pag-next]');
+  const PAG_LAST_BTN = document.querySelector('[data-pag-last]');
+
+  let petsExtended = [];
+
+  const createPetItemPaginationArray = () => {
+    const MULTIPLIER = 6;
+
+    for (let i = 0; i < MULTIPLIER; i++) {
+      petsExtended.push(shuffleArray(pets.slice()));
     }
 
-    for (let i = 0; i < PETS_LENGTH; i++) {
-      const PET_ITEM =
-        `<div class="${className}__item">
-        <div class="${className}__img-wrp"><img class="${className}__img undefined" src="${pets[i].img}"
-            alt="homeless pet"></div>
-        <div class="${className}__content">
-          <p class="${className}__name">${pets[i].name}</p><button class="btn ${className}__link" data-modal-btn id=${pets[i].id}>Learn
-            more</button>
-        </div>`;
-
-      parent.insertAdjacentHTML('beforeend', PET_ITEM);
-    }
-    modalOpenEventAdd();
+    petsExtended = petsExtended.flat();
+    console.log(petsExtended);
+    displayPetItemPagination(false);
   };
 
-  SLIDER_TRACK ? createPetItem('slider', SLIDER_TRACK) : false;
-  PETS_WRAPPER ? createPetItem('pets', PETS_WRAPPER) : false;
+  //Pagination btns check
+  const checkPagBtnDisabling = () => {
+    const PETS_EXTENDED_LENGTH = petsExtended.length;
+
+    if (PETS_EXTENDED_LENGTH > 3) {
+      if (startIdx === 0) {
+        PAG_NEXT_BTN.removeAttribute('disabled');
+        PAG_NEXT_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_LAST_BTN.removeAttribute('disabled');
+        PAG_LAST_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_PREV_BTN.setAttribute('disabled', 'true');
+        PAG_PREV_BTN.classList.add('pets__pag-link--inactive');
+
+        PAG_FIRST_BTN.setAttribute('disabled', 'true');
+        PAG_FIRST_BTN.classList.add('pets__pag-link--inactive');
+
+      } else if (lastDisplayed === PETS_EXTENDED_LENGTH - 1) {
+        PAG_NEXT_BTN.setAttribute('disabled', 'true');
+        PAG_NEXT_BTN.classList.add('pets__pag-link--inactive');
+
+        PAG_LAST_BTN.setAttribute('disabled', 'true');
+        PAG_LAST_BTN.classList.add('pets__pag-link--inactive');
+
+        PAG_PREV_BTN.removeAttribute('disabled');
+        PAG_PREV_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_FIRST_BTN.removeAttribute('disabled');
+        PAG_FIRST_BTN.classList.remove('pets__pag-link--inactive');
+
+      } else {
+        PAG_NEXT_BTN.removeAttribute('disabled');
+        PAG_NEXT_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_LAST_BTN.removeAttribute('disabled');
+        PAG_LAST_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_PREV_BTN.removeAttribute('disabled');
+        PAG_PREV_BTN.classList.remove('pets__pag-link--inactive');
+
+        PAG_FIRST_BTN.removeAttribute('disabled');
+        PAG_FIRST_BTN.classList.remove('pets__pag-link--inactive');
+      }
+    } else {
+      PAG_NEXT_BTN.setAttribute('disabled', 'true');
+      PAG_NEXT_BTN.classList.add('pets__pag-link--inactive');
+
+      PAG_LAST_BTN.setAttribute('disabled', 'true');
+      PAG_LAST_BTN.classList.add('pets__pag-link--inactive');
+
+      PAG_PREV_BTN.setAttribute('disabled', 'true');
+      PAG_PREV_BTN.classList.add('pets__pag-link--inactive');
+
+      PAG_FIRST_BTN.setAttribute('disabled', 'true');
+      PAG_FIRST_BTN.classList.add('pets__pag-link--inactive');
+    }
+  };
+
+  //Display pagination items
+  let startIdx = 0;
+  let curPage = 1;
+  let lastDisplayed;
+
+  const itemsDisplayCount = () => {
+    let itemsToDisplay;
+    if (document.documentElement.clientWidth <= 767) {
+      itemsToDisplay = 3;
+    } else if (document.documentElement.clientWidth <= 1279) {
+      itemsToDisplay = 6;
+    } else if (document.documentElement.clientWidth) {
+      itemsToDisplay = 8;
+    }
+
+    return itemsToDisplay;
+  };
+
+  const displayPetItemPagination = (onResize, idx = 0) => {
+    while (PETS_WRAPPER.firstChild) {
+      PETS_WRAPPER.removeChild(PETS_WRAPPER.firstChild);
+    }
+
+    let displayCount = itemsDisplayCount();
+
+    for (let i = idx; i < displayCount + idx; i++) {
+      const PET_ITEM =
+        `<div class="pets__item" data-modal-btn id=${petsExtended[i].id}>
+          <div class="pets__img-wrp">
+            <img class="pets__img" src="${petsExtended[i].img}" alt="homeless pet">
+          </div>
+          <div class="pets__content">
+            <p class="pets__name">${petsExtended[i].name}</p>
+            <button class="btn pets__link">Learn more</button>
+          </div>
+        </div>`;
+
+      PETS_WRAPPER.insertAdjacentHTML('beforeend', PET_ITEM);
+    }
+
+    onResize ? lastDisplayed = (displayCount + idx) * curPage - 1 : lastDisplayed = displayCount + idx - 1;
+    console.log(lastDisplayed);
+    modalOpenBtnEventAdd();
+    checkPagBtnDisabling();
+  };
+
+  PETS_WRAPPER ? createPetItemPaginationArray() : false;
+
+  if (document.querySelector('.pets__pag')) {
+    PAG_NEXT_BTN.addEventListener('click', () => {
+      displayPetItemPagination(false, startIdx += itemsDisplayCount());
+      PAG_PAGE.innerHTML = ++curPage;
+    });
+
+    PAG_LAST_BTN.addEventListener('click', () => {
+      displayPetItemPagination(false, startIdx = petsExtended.length - itemsDisplayCount());
+      PAG_PAGE.innerHTML = curPage = 6;
+    });
+
+    PAG_PREV_BTN.addEventListener('click', () => {
+      displayPetItemPagination(false, startIdx -= itemsDisplayCount());
+      PAG_PAGE.innerHTML = --curPage;
+    });
+
+    PAG_FIRST_BTN.addEventListener('click', () => {
+      displayPetItemPagination(false, startIdx = 0);
+      PAG_PAGE.innerHTML = curPage = 1;
+    });
+  }
+
+  //Create and dislpay slider items
+  const createPetItemSlider = (isSliderRand = false) => {
+    if (isSliderRand) {
+      while (SLIDER_TRACK.firstChild) {
+        SLIDER_TRACK.removeChild(SLIDER_TRACK.firstChild);
+      }
+
+      pets = shuffleArray(pets)
+    }
+
+    for (let i = 0; i < petsLength; i++) {
+      const PET_ITEM =
+        `<div class="slider__item" data-modal-btn id=${pets[i].id}>
+          <div class="slider__img-wrp">
+            <img class="slider__img" src="${pets[i].img}" alt="homeless pet">
+          </div>
+          <div class="slider__content">
+            <p class="slider__name">${pets[i].name}</p>
+            <button class="btn slider__link">Learn more</button>
+          </div>
+        </div>`;
+
+      SLIDER_TRACK.insertAdjacentHTML('beforeend', PET_ITEM);
+    }
+    modalOpenBtnEventAdd();
+  };
+
+  SLIDER_TRACK ? createPetItemSlider() : false;
 
   //Modal dynamic creation
   const BODY = document.querySelector('body');
   let modal;
 
   const modalCreate = (id) => {
-    for (let i = 0; i < PETS_LENGTH; i++) {
+    for (let i = 0; i < petsLength; i++) {
       if (pets[i].inoculations.length > 1) pets[i].inoculations = pets[i].inoculations.join(', ').split();
       if (pets[i].diseases.length > 1) pets[i].diseases = pets[i].diseases.join(', ').split();
       if (pets[i].parasites.length > 1) pets[i].parasites = pets[i].parasites.join(', ').split();
@@ -127,6 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modalOpen = () => {
     BODY.classList.add('scroll-hidden');
+    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      BODY.style.paddingRight = 15 + 'px';
+    }
+
     modalCloseBtn = document.querySelector('[data-modal-close]');
     modalCloseBtn.addEventListener('click', modalClose);
     modalBg = document.querySelector('.modal-bg');
@@ -134,10 +291,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modalClose = () => {
     BODY.classList.remove('scroll-hidden');
+    BODY.style.paddingRight = 0;
     document.querySelector('.modal-bg').remove();
   };
 
-  //Burger-menu
+  /*****Burger-menu*****/
   const BURGER_BTN = document.querySelector('[data-burger]');
   const MENU = document.querySelector('[data-menu]');
   const PAGE = document.querySelector('.page');
@@ -179,18 +337,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   BURGER_BTN.addEventListener('click', toggleBurgerClasses);
 
-  //Blackout
+  /*****Blackout*****/
   document.addEventListener('click', (e) => {
     const TARGET = e.target;
     TARGET === PAGE ? slideOut() : false;
     TARGET === modalBg ? modalClose() : false;
   });
 
-  //Slider
+  /*****Slider*****/
   const TRACK = document.querySelector('.slider__track');
 
   const sliderWidthCheck = () => {
-    if (TRACK === null) return;
+    if (!TRACK) return;
     if (TRACK.clientWidth === 990) {
       slidesToScroll = 3;
     } else if (TRACK.clientWidth === 580) {
@@ -221,37 +379,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     BTN_NEXT.addEventListener('click', () => {
       items = document.querySelectorAll('.slider__item');
-      createPetItem('slider', SLIDER_TRACK, true);
+      createPetItemSlider(true);
       // for (let i = 0; i < slidesToScroll; i++) {
       //   TRACK.append(items[i]);
       // }
-      SET_POSITION(true);
+      SET_POSITION();
     });
 
     BTN_PREV.addEventListener('click', () => {
       items = document.querySelectorAll('.slider__item');
-      createPetItem('slider', SLIDER_TRACK, true);
+      createPetItemSlider(true);
       // for (let i = 0; i < slidesToScroll; i++) {
       //   TRACK.prepend(items[items.length - 1 - i]);
       // }
-      SET_POSITION(false);
+      SET_POSITION();
     });
 
     sliderWidthCheck();
   }
 
-  window.addEventListener('orientationchange', () => {
-    const afterOrientationChange = () => {
-      if (document.documentElement.clientWidth > 767) {
-        removeBurgerClasses();
-      }
-      sliderWidthCheck();
-      window.removeEventListener('resize', afterOrientationChange);
-    };
-    window.addEventListener('resize', afterOrientationChange);
+  /*****Resize check*****/
+  window.addEventListener('resize', () => {
+    if (document.documentElement.clientWidth > 767) {
+      removeBurgerClasses();
+    }
+    sliderWidthCheck();
+    displayPetItemPagination(true);
+  });
+
+  /*****Scroll check*****/
+  window.addEventListener('scroll', function () {
+    const HEADER_SECONDARY = document.querySelector('.header--dark');
+    if (!HEADER_SECONDARY) return;
+
+    if (pageYOffset > 42) {
+      HEADER_SECONDARY.style.boxShadow = '0 0 10px #909090';
+    } else {
+      HEADER_SECONDARY.style.boxShadow = 'none';
+    }
   });
 
   activeLink();
-  headerDark();
+  headerSecondary();
   shuffleArray(pets);
 });

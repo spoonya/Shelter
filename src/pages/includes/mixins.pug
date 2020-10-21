@@ -40,12 +40,12 @@ mixin modal
               span.modal__info-value(data-modal-parasites) none
 
 mixin pet-item(src, name, className, modif)
-  div(class= `${className}__item`)
+  div(class= `${className}__item` data-modal-btn)
     div(class= `${className}__img-wrp`)
       img(class= `${className}__img ${modif}` src= src, alt="homeless pet")
     div(class= `${className}__content`)
       p(class= `${className}__name`)= name
-      +btn("Learn more")(class=`${className}__link` data-modal-btn)
+      +btn("Learn more")(class=`${className}__link`)
 
 mixin help-item(icon, name)
   .help__item
