@@ -15,7 +15,7 @@
   border-radius: 100px;
   background-color: $color-primary;
 
-  &:hover {
+  &:not([data-pag-page]):hover {
     border-color: $color-primary-light;
     background-color: $color-primary-light;
   }

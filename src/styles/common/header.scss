@@ -13,10 +13,9 @@
 }
 
 .header--dark {
-  position: sticky;
+  padding: 3rem 0 2.9rem;
 
-  margin: 2rem 0 1.9rem;
-  padding: 1rem 0 1rem;
+  transition: box-shadow .1s linear;
 
   background-color: $color-light-xl;
 
@@ -47,17 +46,17 @@
   }
 }
 
+.header--dark.fixed {
+  position: fixed;
+
+  padding: 1rem 0;
+
+  box-shadow: 0 0 10px - 2px #909090;
+}
+
 .header--dark.header--burger {
   margin: 0;
   padding: 3rem 0 2.9rem;
-
-  // .header__menu-link--active {
-  //   color: $color-light-s;
-
-  //   &::after {
-  //     opacity: 1;
-  //   }
-  // }
 }
 
 .header__inner {
@@ -310,6 +309,8 @@
 .slide-out {
   animation: slide-out .6s backwards;
   animation-delay: .1s;
+
+
   @keyframes slide-out {
     0% {
       transform: translateX(0);

@@ -1,12 +1,12 @@
 .pets {
   @include media-laptop {
-    padding: 8rem 0 7.53rem;
+    padding: 20rem 0 7.53rem;
   }
   @include media-tablet-pt {
-    padding: 4.28rem 0;
+    padding: 16.28rem 0;
   }
 
-  padding: 8rem 0 10rem;
+  padding: 20rem 0 10rem;
 
   background-color: $color-light-m;
 }
@@ -144,6 +144,10 @@
   }
 }
 
+[data-pag-page] {
+  cursor: default;
+}
+
 .pets__pag-icon {
   position: absolute;
 
@@ -158,5 +162,20 @@
 
   &--double {
     width: 27px;
+  }
+}
+
+.pets__anime {
+  animation: pets .5s forwards ease-in-out;
+  // animation-delay: .1s;
+
+  @keyframes pets {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 }
