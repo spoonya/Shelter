@@ -196,21 +196,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('max = ' + maxDisplay);
 
-    for (let i = 0; i < maxDisplay; i++) {
-      const PET_ITEM =
-        `<div class="slider__item" data-modal-btn id=${petsCopy[i].id}>
-          <div class="slider__img-wrp">
-            <img class="slider__img" src="${petsCopy[i].img}" alt="homeless pet">
-          </div>
-          <div class="slider__content">
-            <p class="slider__name">${petsCopy[i].name}</p>
-            <button class="btn slider__link">Learn more</button>
-          </div>
-        </div>`;
+    if (!onResize) {
+      for (let i = 0; i < maxDisplay; i++) {
+        const PET_ITEM =
+          `<div class="slider__item" data-modal-btn id=${petsCopy[i].id}>
+            <div class="slider__img-wrp">
+              <img class="slider__img" src="${petsCopy[i].img}" alt="homeless pet">
+            </div>
+            <div class="slider__content">
+              <p class="slider__name">${petsCopy[i].name}</p>
+              <button class="btn slider__link">Learn more</button>
+            </div>
+          </div>`;
 
-      SLIDER_TRACK.insertAdjacentHTML('beforeend', PET_ITEM);
+        SLIDER_TRACK.insertAdjacentHTML('beforeend', PET_ITEM);
 
-      itemsAnime(SLIDER_TRACK, 'slider', 100);
+        itemsAnime(SLIDER_TRACK, 'slider', 100);
+      }
     }
 
     if (!onResize) {
