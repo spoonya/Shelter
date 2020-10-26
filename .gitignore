@@ -1,4 +1,4 @@
-# Файлы и папки операционной системы
+﻿# Файлы и папки операционной системы
 .DS_Store
 Thumbs.db
 
@@ -13,4 +13,8 @@ node_modules/
 reports/
 
 # Папка с собранными файлами проекта
+<<<<<<< Updated upstream
 build/
+=======
+ build/
+>>>>>>> Stashed changes

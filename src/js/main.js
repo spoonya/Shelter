@@ -87,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let lastDisplayed;
 
   const itemsMaxDisplayCount = () => {
+    if (!PETS_WRAPPER) return;
     let itemsToDisplay;
     if (document.documentElement.clientWidth <= 767) {
       itemsToDisplay = 3;
@@ -173,23 +174,26 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   //Create and dislpay slider items
+  let showedSliderItems;
+  let petsCopy = pets.slice();
+  let backSlides = false;
   const createPetItemSlider = (isSliderRand = false) => {
     if (isSliderRand) {
       while (SLIDER_TRACK.firstChild) {
         SLIDER_TRACK.removeChild(SLIDER_TRACK.firstChild);
       }
 
-      pets = shuffleArray(pets)
+      petsCopy = shuffleArray(petsCopy);
     }
 
-    for (let i = 0; i < petsLength; i++) {
+    for (let i = 0; i < 3; i++) {
       const PET_ITEM =
-        `<div class="slider__item" data-modal-btn id=${pets[i].id}>
+        `<div class="slider__item" data-modal-btn id=${petsCopy[i].id}>
           <div class="slider__img-wrp">
-            <img class="slider__img" src="${pets[i].img}" alt="homeless pet">
+            <img class="slider__img" src="${petsCopy[i].img}" alt="homeless pet">
           </div>
           <div class="slider__content">
-            <p class="slider__name">${pets[i].name}</p>
+            <p class="slider__name">${petsCopy[i].name}</p>
             <button class="btn slider__link">Learn more</button>
           </div>
         </div>`;
@@ -198,6 +202,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       itemsAnime(SLIDER_TRACK, 'slider', 100);
     }
+
+    if (backSlides) {
+      for (let i = 0; i < showedSliderItems.length; i++) {
+        petsCopy.push(showedSliderItems[i]);
+      }
+      showedSliderItems.length = 0;
+    } else {
+      backSlides = true;
+    }
+
+    showedSliderItems = (petsCopy.splice(0, 3));
+    console.log(showedSliderItems);
+    console.log(petsCopy);
+
     modalOpenBtnEventAdd();
   };
 
@@ -316,6 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /*****Slider*****/
   const sliderWidthCheck = () => {
     if (!SLIDER_TRACK) return;
+    let slidesToScroll;
     if (SLIDER_TRACK.clientWidth === 990) {
       slidesToScroll = 3;
     } else if (SLIDER_TRACK.clientWidth === 580) {
@@ -323,6 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       slidesToScroll = 1;
     }
+
+    return slidesToScroll;
   };
 
   if (SLIDER_TRACK) {
@@ -332,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // let slidesToScroll;
 
     BTN_NEXT.addEventListener('click', () => {
-      items = document.querySelectorAll('.slider__item');
+      // items = document.querySelectorAll('.slider__item');
       createPetItemSlider(true);
       // for (let i = 0; i < slidesToScroll; i++) {
       //   TRACK.append(items[i]);
@@ -340,14 +361,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     BTN_PREV.addEventListener('click', () => {
-      items = document.querySelectorAll('.slider__item');
+      // items = document.querySelectorAll('.slider__item');
       createPetItemSlider(true);
       // for (let i = 0; i < slidesToScroll; i++) {
       //   TRACK.prepend(items[items.length - 1 - i]);
       // }
     });
 
-    sliderWidthCheck();
+    // sliderWidthCheck();
   }
 
   /*****Resize check*****/
@@ -355,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.documentElement.clientWidth > 767) {
       removeBurgerClasses();
     }
-    sliderWidthCheck();
+    // sliderWidthCheck();
 
     if (currentMaxDisplay !== itemsMaxDisplayCount()) {
       currentMaxDisplay = itemsMaxDisplayCount();

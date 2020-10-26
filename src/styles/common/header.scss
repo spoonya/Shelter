@@ -15,8 +15,6 @@
 .header--dark {
   padding: 3rem 0 2.9rem;
 
-  transition: box-shadow .1s linear;
-
   background-color: $color-light-xl;
 
   .header__title {
@@ -51,7 +49,7 @@
 
   padding: 1rem 0;
 
-  box-shadow: 0 0 10px - 2px #909090;
+  box-shadow: 0 10px 10px -10px #909090;
 }
 
 .header--dark.header--burger {
