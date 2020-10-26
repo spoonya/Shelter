@@ -176,17 +176,27 @@ document.addEventListener('DOMContentLoaded', () => {
   //Create and dislpay slider items
   let showedSliderItems;
   let petsCopy = pets.slice();
-  let backSlides = false;
-  const createPetItemSlider = (isSliderRand = false) => {
-    if (isSliderRand) {
-      while (SLIDER_TRACK.firstChild) {
-        SLIDER_TRACK.removeChild(SLIDER_TRACK.firstChild);
-      }
-
-      petsCopy = shuffleArray(petsCopy);
+  const createPetItemSlider = (isSliderRand = false, onResize = false) => {
+    while (SLIDER_TRACK.firstChild) {
+      SLIDER_TRACK.removeChild(SLIDER_TRACK.firstChild);
     }
 
-    for (let i = 0; i < 3; i++) {
+    if (isSliderRand) {
+      petsCopy = shuffleArray(petsCopy);
+      petsCopy = petsCopy.concat(showedSliderItems);
+      showedSliderItems.length = 0;
+    }
+
+    let maxDisplay = 0;
+    if (petsCopy.length < sliderWidthCheck()) {
+      maxDisplay = petsCopy.length;
+    } else {
+      maxDisplay = sliderWidthCheck();
+    }
+
+    console.log('max = ' + maxDisplay);
+
+    for (let i = 0; i < maxDisplay; i++) {
       const PET_ITEM =
         `<div class="slider__item" data-modal-btn id=${petsCopy[i].id}>
           <div class="slider__img-wrp">
@@ -203,16 +213,33 @@ document.addEventListener('DOMContentLoaded', () => {
       itemsAnime(SLIDER_TRACK, 'slider', 100);
     }
 
-    if (backSlides) {
-      for (let i = 0; i < showedSliderItems.length; i++) {
-        petsCopy.push(showedSliderItems[i]);
-      }
-      showedSliderItems.length = 0;
+    if (!onResize) {
+      showedSliderItems = (petsCopy.splice(0, maxDisplay));
     } else {
-      backSlides = true;
+      while (SLIDER_TRACK.firstChild) {
+        SLIDER_TRACK.removeChild(SLIDER_TRACK.firstChild);
+      }
+
+      if (showedSliderItems.length < maxDisplay) {
+        showedSliderItems = showedSliderItems.concat(petsCopy.splice(0, maxDisplay - showedSliderItems.length));
+      }
+
+      for (let i = 0; i < maxDisplay; i++) {
+        const PET_ITEM =
+          `<div class="slider__item" data-modal-btn id=${showedSliderItems[i].id}>
+            <div class="slider__img-wrp">
+              <img class="slider__img" src="${showedSliderItems[i].img}" alt="homeless pet">
+            </div>
+            <div class="slider__content">
+              <p class="slider__name">${showedSliderItems[i].name}</p>
+              <button class="btn slider__link">Learn more</button>
+            </div>
+          </div>`;
+
+        SLIDER_TRACK.insertAdjacentHTML('beforeend', PET_ITEM);
+      }
     }
 
-    showedSliderItems = (petsCopy.splice(0, 3));
     console.log(showedSliderItems);
     console.log(petsCopy);
 
@@ -270,7 +297,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
       BODY.style.paddingRight = 15 + 'px';
     }
-
     modalCloseBtn = document.querySelector('[data-modal-close]');
     modalCloseBtn.addEventListener('click', modalClose);
     modalBg = document.querySelector('.modal-bg');
@@ -335,12 +361,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const sliderWidthCheck = () => {
     if (!SLIDER_TRACK) return;
     let slidesToScroll;
-    if (SLIDER_TRACK.clientWidth === 990) {
-      slidesToScroll = 3;
-    } else if (SLIDER_TRACK.clientWidth === 580) {
-      slidesToScroll = 2;
-    } else {
+    if (document.documentElement.clientWidth <= 767) {
       slidesToScroll = 1;
+    } else if (document.documentElement.clientWidth <= 1279) {
+      slidesToScroll = 2;
+    } else if (document.documentElement.clientWidth) {
+      slidesToScroll = 3;
     }
 
     return slidesToScroll;
@@ -376,10 +402,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.documentElement.clientWidth > 767) {
       removeBurgerClasses();
     }
-    // sliderWidthCheck();
 
-    if (currentMaxDisplay !== itemsMaxDisplayCount()) {
-      currentMaxDisplay = itemsMaxDisplayCount();
+    if (currentMaxSliderDisplay !== sliderWidthCheck()) {
+      currentMaxSliderDisplay = sliderWidthCheck();
+      createPetItemSlider(false, true);
+    }
+
+    if (currentMaxPagDisplay !== itemsMaxDisplayCount()) {
+      currentMaxPagDisplay = itemsMaxDisplayCount();
       displayPetItemPagination(true);
     }
   });
@@ -398,13 +428,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /*****Header secondary*****/
   (() => {
-    let page = document.title;
-    if (page != 'Shelter') {
+    const PAGE = document.title;
+    if (PAGE != 'Shelter') {
       document.querySelector('.header').classList.add('header--dark');
     } else {
       document.querySelector('.header').classList.remove('header--dark');
     }
   })();
+
+  /*****Smooth scroll*****/
+  const scrollToTop = () => {
+    const C = document.documentElement.scrollTop || document.body.scrollTop;
+    if (C > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, C - C / 3);
+    }
+  };
+
+  //Add smooth scroll
+  const addSmoothScroll = (e) => {
+    e.preventDefault();
+    scrollToTop();
+    if (HEADER.classList.contains('header--burger')) slideOut();
+  };
 
   /*****Active link*****/
   (() => {
@@ -412,14 +458,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (document.title == 'Shelter') {
       LINKS[0].classList.add('header__menu-link--active');
+      LINKS[0].addEventListener('click', addSmoothScroll);
       TITLE.setAttribute('onclick', 'return false');
     } else if (document.title == 'Shelter - Our pets') {
       LINKS[1].classList.add('header__menu-link--active');
+      LINKS[1].addEventListener('click', addSmoothScroll);
       TITLE.removeAttribute('onclick');
     }
   })();
 
-  let currentMaxDisplay = itemsMaxDisplayCount();
+  let currentMaxPagDisplay = itemsMaxDisplayCount();
+  let currentMaxSliderDisplay = sliderWidthCheck();
   SLIDER_TRACK ? createPetItemSlider() : false;
   PETS_WRAPPER ? createPetItemPaginationArray() : false;
 });

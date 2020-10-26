@@ -37,6 +37,14 @@
     &--active {
       color: $color-dark-3xl;
     }
+
+    &--inactive {
+      cursor: default;
+
+      &:hover {
+        color: $color-dark-l;
+      }
+    }
   }
 
   .header__burger-line {
@@ -207,6 +215,14 @@
     &:hover {
       color: $color-light-s;
     }
+
+    &--inactive {
+      cursor: default;
+
+      &:hover {
+        color: $color-light-l;
+      }
+    }
   }
 
   .header__burger-line {
@@ -263,6 +279,7 @@
 
   color: $color-light-l;
 
+
   &:hover {
     color: $color-light-s;
   }
@@ -289,6 +306,14 @@
 
     &::after {
       opacity: 1;
+    }
+  }
+
+  &--inactive {
+    cursor: default;
+
+    &:hover {
+      color: $color-light-l;
     }
   }
 }
